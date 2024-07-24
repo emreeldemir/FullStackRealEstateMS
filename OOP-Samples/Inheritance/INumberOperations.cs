@@ -11,5 +11,7 @@ namespace Inheritance
         bool IsSpecialNumber(int number);
         List<int> FindInRange(int start, int end);
         List<int> FindFirstXNumbers(int count);
+
+        // asdasd
     }
 }
