@@ -1,8 +1,8 @@
-﻿using Inheritance;
+﻿using MathExercise;
 using System;
 using System.Collections.Generic;
 
-namespace Inheritance
+namespace MathExercise
 {
     class Program
     {
@@ -11,10 +11,10 @@ namespace Inheritance
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Lütfen yapmak istediğiniz işlemi seçin:");
+                Console.WriteLine("Please select the action you want to take:");
                 Console.WriteLine("1. Prime Number");
                 Console.WriteLine("2. Perfect Number");
-                Console.WriteLine("3. Çıkış");
+                Console.WriteLine("3. Exit");
 
                 var choice = Console.ReadLine();
 
@@ -32,7 +32,7 @@ namespace Inheritance
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("Geçersiz seçim. Tekrar deneyin.");
+                        Console.WriteLine("Invalid choice. Try again please!");
                         break;
                 }
 
@@ -48,10 +48,10 @@ namespace Inheritance
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("1. Sayı sorgula");
-                Console.WriteLine("2. Aralık belirt");
-                Console.WriteLine("3. İlk 'x' tane sayıyı bul");
-                Console.WriteLine("4. Ana menüye dön");
+                Console.WriteLine("1. Check a number");
+                Console.WriteLine("2. Check at interval");
+                Console.WriteLine("3. Find first 'x' number");
+                Console.WriteLine("4. Return to homepage");
 
                 var choice = Console.ReadLine();
 
@@ -69,7 +69,7 @@ namespace Inheritance
                     case "4":
                         return;
                     default:
-                        Console.WriteLine("Geçersiz seçim. Tekrar deneyin.");
+                        Console.WriteLine("Invalid choice. Try again please!");
                         break;
                 }
             }
@@ -78,17 +78,17 @@ namespace Inheritance
         static void CheckSpecialNumber(INumberOperations operations)
         {
             Console.Clear();
-            Console.Write("Sorgulamak istediğiniz sayıyı girin: ");
+            Console.Write("Enter the number: ");
             if (int.TryParse(Console.ReadLine(), out int number))
             {
                 if (operations.IsSpecialNumber(number))
-                    Console.WriteLine($"{number} özel bir sayıdır.");
+                    Console.WriteLine($"{number} is a special number.");
                 else
-                    Console.WriteLine($"{number} özel bir sayı değildir.");
+                    Console.WriteLine($"{number} is not a special number.");
             }
             else
             {
-                Console.WriteLine("Geçerli bir sayı girin.");
+                Console.WriteLine("Enter a valid number!");
             }
             Console.ReadLine();
         }
@@ -96,14 +96,14 @@ namespace Inheritance
         static void FindInRange(INumberOperations operations)
         {
             Console.Clear();
-            Console.Write("Başlangıç değeri girin: ");
+            Console.Write("Enter first value: ");
             int start = int.Parse(Console.ReadLine());
-            Console.Write("Bitiş değeri girin: ");
+            Console.Write("Enter last value: ");
             int end = int.Parse(Console.ReadLine());
 
             var numbers = operations.FindInRange(start, end);
 
-            Console.WriteLine("Aralıktaki özel sayılar:");
+            Console.WriteLine("Special numbers in interval:");
             foreach (var number in numbers)
             {
                 Console.WriteLine(number);
@@ -114,12 +114,12 @@ namespace Inheritance
         static void FindFirstXNumbers(INumberOperations operations)
         {
             Console.Clear();
-            Console.Write("Kaç tane özel sayı bulmak istiyorsunuz?: ");
+            Console.Write("How many special number do you want to find?: ");
             int count = int.Parse(Console.ReadLine());
 
             var numbers = operations.FindFirstXNumbers(count);
 
-            Console.WriteLine($"İlk {count} özel sayılar:");
+            Console.WriteLine($"First {count} special numbers:");
             foreach (var number in numbers)
             {
                 Console.WriteLine(number);

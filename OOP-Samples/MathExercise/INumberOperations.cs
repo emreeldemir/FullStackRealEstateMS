@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Inheritance
+namespace MathExercise
 {
     public interface INumberOperations
     {
@@ -12,6 +12,6 @@ namespace Inheritance
         List<int> FindInRange(int start, int end);
         List<int> FindFirstXNumbers(int count);
 
-        // asdasd
+        
     }
 }
