@@ -13,12 +13,7 @@
         public Publisher Publisher { get; set; }
         public int PublisherId { get; set; }
 
-        public Customer Customer { get; set; }
-        public int CustomerId { get; set; }
-
-        public Book()
-        {
-            
-        }
+        public Customer? Customer { get; set; }
+        public int? CustomerId { get; set; }
     }
 }

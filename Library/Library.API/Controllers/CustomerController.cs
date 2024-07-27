@@ -47,7 +47,7 @@ namespace Library.API.Controllers
         [HttpGet]
         public IActionResult Get(int id)
         {
-            var customer = context.Customers.FirstOrDefault(x => x.Id == id && !x.IsDeleted);
+            var customer = context.Customers.FirstOrDefault(x => x.Id == id && !x.isDeleted);
             if (customer == null) return NotFound();
 
             return Ok(CustomerInfoDTO.FromCustomer(customer));
@@ -60,7 +60,7 @@ namespace Library.API.Controllers
         {
             var customer = context.Customers.FirstOrDefault(x => x.Id == id);
             if (customer == null) return NotFound();
-            customer.IsDeleted = true;
+            customer.isDeleted = true;
 
             context.SaveChanges();
 
@@ -72,7 +72,7 @@ namespace Library.API.Controllers
         public IActionResult GetAll()
         {
 
-            var customer = context.Customers.Where(x => !x.IsDeleted).ToList();
+            var customer = context.Customers.Where(x => !x.isDeleted).ToList();
             if (customer == null) return NotFound();
 
             List<CustomerInfoDTO> listDTO = new List<CustomerInfoDTO>();

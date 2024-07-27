@@ -57,7 +57,7 @@ namespace Library.API.Controllers
         {
             var author = context.Authors.FirstOrDefault(x => x.Id == id);
             if (author == null) return NotFound();
-            author.IsDeleted = true;
+            author.isDeleted = true;
 
             context.SaveChanges();
 
@@ -68,7 +68,7 @@ namespace Library.API.Controllers
         [Route("list")]
         public IActionResult GetAll()
         {
-            var author = context.Authors.Where(x => x.IsDeleted == false).ToList();
+            var author = context.Authors.Where(x => x.isDeleted == false).ToList();
             if (author == null) return NotFound();
 
             List<AuthorInfoDTO> authorInfoDTOs = new List<AuthorInfoDTO>();

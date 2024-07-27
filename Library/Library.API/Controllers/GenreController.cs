@@ -56,7 +56,7 @@ namespace Library.API.Controllers
         {
             var genre = context.Genres.FirstOrDefault(x => x.Id == id);
             if (genre == null) return NotFound();
-            genre.IsDeleted = true;
+            genre.isDeleted = true;
 
             context.SaveChanges();
 
@@ -67,7 +67,7 @@ namespace Library.API.Controllers
         [Route("list")]
         public IActionResult GetAll()
         {
-            var genre = context.Genres.Where(x => x.IsDeleted == false).ToList();
+            var genre = context.Genres.Where(x => x.isDeleted == false).ToList();
             if (genre == null) return NotFound();
 
             List<GenreInfoDTO> genreInfoDTOs = new List<GenreInfoDTO>();

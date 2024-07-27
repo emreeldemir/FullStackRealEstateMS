@@ -57,7 +57,7 @@ namespace Library.API.Controllers
         {
             var publisher = context.Publishers.FirstOrDefault(x => x.Id == id);
             if (publisher == null) return NotFound();
-            publisher.IsDeleted = true;
+            publisher.isDeleted = true;
 
             context.SaveChanges();
 
@@ -68,7 +68,7 @@ namespace Library.API.Controllers
         [Route("list")]
         public IActionResult GetAll()
         {
-            var publisher = context.Publishers.Where(x => x.IsDeleted == false).ToList();
+            var publisher = context.Publishers.Where(x => x.isDeleted == false).ToList();
             if (publisher == null) return NotFound();
 
             List<PublisherInfoDTO> publisherInfoDTOs = new List<PublisherInfoDTO>();
