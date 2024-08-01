@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const apiClient = axios.create({
-    baseURL: "https://jsonplaceholder.typicode.com",
+    baseURL: "http://localhost:5227/api",
     timeout: 10000,
 });
 
