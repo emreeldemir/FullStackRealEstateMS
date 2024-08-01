@@ -36,7 +36,7 @@ namespace Library.API.Controllers
             if (author == null) return NotFound();
 
             author.FirstName = firstName;
-            author.LastName = firstName;
+            author.LastName = lastName;
             context.SaveChanges();
 
             return Ok(AuthorInfoDTO.FromAuthor(author));
