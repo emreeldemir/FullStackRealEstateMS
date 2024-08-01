@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import apiClient from './ApiClient';
 
 function UserList() {
     const [users, setUsers] = useState([]);
@@ -7,9 +7,9 @@ function UserList() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/users')
+        apiClient.get('/users')
             .then(response => {
-                setUsers(response.data);
+                setUsers(response);
                 setLoading(false);
             })
 
