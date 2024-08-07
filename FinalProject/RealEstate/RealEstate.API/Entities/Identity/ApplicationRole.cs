@@ -2,7 +2,7 @@
 
 namespace RealEstate.API.Entities.Identity
 {
-    public class ApplicationRole : IdentityRole
+    public class ApplicationRole : IdentityRole<int>
     {
 
     }

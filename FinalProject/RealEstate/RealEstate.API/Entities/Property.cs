@@ -16,7 +16,7 @@ namespace RealEstate.API.Entities
         public int CurrencyId { get; set; }
         public Currency Currency { get; set; }
         public ICollection<Photo> Photos { get; set; }
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public ApplicationUser User { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
