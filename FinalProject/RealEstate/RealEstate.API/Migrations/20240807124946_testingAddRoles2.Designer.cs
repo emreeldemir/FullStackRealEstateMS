@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RealEstate.API.Context;
 
@@ -11,9 +12,11 @@ using RealEstate.API.Context;
 namespace RealEstate.API.Migrations
 {
     [DbContext(typeof(RealEstateContext))]
-    partial class RealEstateContextModelSnapshot : ModelSnapshot
+    [Migration("20240807124946_testingAddRoles2")]
+    partial class testingAddRoles2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -178,14 +181,12 @@ namespace RealEstate.API.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "e8dcd71a-76c2-4831-8602-4c826fa24bb8",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "68c33feb-a5c4-48f6-86b2-9c81feed9ed5",
                             Name = "user",
                             NormalizedName = "USER"
                         });
