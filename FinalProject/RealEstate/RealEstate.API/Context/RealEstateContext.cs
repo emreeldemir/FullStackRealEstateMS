@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.API.Entities.Identity;
 
 namespace RealEstate.API.Context
 {
-    public class RealEstateContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
+    public class RealEstateContext : IdentityDbContext<ApplicationUser, ApplicationRole, int>
     {
          
         public RealEstateContext(DbContextOptions<RealEstateContext> options) : base(options)
@@ -21,6 +22,8 @@ namespace RealEstate.API.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
+            //builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "user" });
             base.OnModelCreating(builder);
 
             // Additional configurations
