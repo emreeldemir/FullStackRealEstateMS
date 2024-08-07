@@ -7,6 +7,7 @@ using RealEstate.API.Context;
 using RealEstate.API.DTOs.User;
 using RealEstate.API.Entities.Identity;
 using RealEstate.API.Models;
+using RealEstate.API.Services;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -67,6 +68,7 @@ namespace RealEstate.API.Controllers
             return Ok(new { Message = "User Created Successfully!" });
         }
 
+
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] UserLoginRequestDTO userLoginRequestDTO)
         {
@@ -92,21 +94,136 @@ namespace RealEstate.API.Controllers
         }
 
 
+        [HttpPut("UpdateUserInfo")]
+        public async Task<IActionResult> UpdateUserInfo([FromBody] UpdateUserInfoRequestDTO updateUserInfoRequestDTO)
+        {
+            var user = await _userManager.FindByIdAsync(updateUserInfoRequestDTO.UserId);
+            if (user == null)
+            {
+                return NotFound(new { Message = "User not found!" });
+            }
+
+            // Check if new UserName is already taken (only if it's being changed)
+            if (!string.IsNullOrEmpty(updateUserInfoRequestDTO.UserName) &&
+                !updateUserInfoRequestDTO.UserName.Equals(user.UserName) &&
+                await _userManager.FindByNameAsync(updateUserInfoRequestDTO.UserName) != null)
+            {
+                return BadRequest(new { Message = "Username is already taken!" });
+            }
+
+            // Check if new Email is already used (only if it's being changed)
+            if (!string.IsNullOrEmpty(updateUserInfoRequestDTO.Email) &&
+                !updateUserInfoRequestDTO.Email.Equals(user.Email) &&
+                await _userManager.FindByEmailAsync(updateUserInfoRequestDTO.Email) != null)
+            {
+                return BadRequest(new { Message = "Email is already in use!" });
+            }
+
+            // Update fields
+            if (!string.IsNullOrEmpty(updateUserInfoRequestDTO.UserName))
+            {
+                user.UserName = updateUserInfoRequestDTO.UserName;
+            }
+            if (!string.IsNullOrEmpty(updateUserInfoRequestDTO.Email))
+            {
+                user.Email = updateUserInfoRequestDTO.Email;
+            }
+            if (!string.IsNullOrEmpty(updateUserInfoRequestDTO.NewPassword))
+            {
+                var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var result = await _userManager.ResetPasswordAsync(user, resetToken, updateUserInfoRequestDTO.NewPassword);
+
+                if (!result.Succeeded)
+                {
+                    return BadRequest(result.Errors);
+                }
+            }
+
+            var updateResult = await _userManager.UpdateAsync(user);
+            if (!updateResult.Succeeded)
+            {
+                return BadRequest(updateResult.Errors);
+            }
+
+            // Create response DTO
+            var responseDTO = new UpdateUserInfoResponseDTO
+            {
+                UserName = user.UserName,
+                Email = user.Email
+                // Note: Password is not returned in the response
+            };
+
+            return Ok(responseDTO);
+        }
 
 
 
-        //[AllowAnonymous]
-        //[HttpPost("Login")]
-        //public IActionResult Login([FromBody] ApiUser apiUserInfos)
+
+        //[HttpPost("ForgotPassword")]
+        //public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequestDTO forgotPasswordRequestDTO)
         //{
+        //    var user = await _userManager.FindByEmailAsync(forgotPasswordRequestDTO.Email);
+        //    if (user == null)
+        //    {
+        //        return NotFound(new { Message = "User not found." });
+        //    }
 
-        //    var apiUser = Authenticate(apiUserInfos);
-        //    if (apiUser == null) return NotFound("User can not found!");
+        //    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+        //    var resetLink = Url.Action("ResetPassword", "Account", new { token, email = forgotPasswordRequestDTO.Email }, Request.Scheme);
 
-        //    var token = generateToken(apiUser);
-        //    return Ok(token);
+        //    var emailService = new EmailService("smtp.gmail.com", 587, "your-email@gmail.com", "your-email-password");
+        //    var subject = "Password Reset Request";
+        //    var body = $"Please reset your password by clicking <a href='{resetLink}'>here</a>.";
 
+        //    await emailService.SendEmailAsync(user.Email, subject, body);
+
+        //    return Ok(new { Message = "Password reset link has been sent to your email." });
         //}
+
+
+
+        [HttpGet("GetUserById/{userId}")]
+        public async Task<IActionResult> GetUserById(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound(new { Message = "User not found." });
+            }
+
+            var userInfo = new
+            {
+                user.UserName,
+                user.Email,
+                user.FirstName,
+                user.LastName
+            };
+
+            return Ok(userInfo);
+        }
+
+
+        //[Authorize(Roles = "Admin")]
+        //[HttpGet("GetAllUsers")]
+        //public async Task<IActionResult> GetAllUsers(int pageNumber = 1, int pageSize = 10)
+        //{
+        //    var users = _userManager.Users
+        //        .Skip((pageNumber - 1) * pageSize)
+        //        .Take(pageSize)
+        //        .Select(user => new
+        //        {
+        //            user.Id,
+        //            user.UserName,
+        //            user.Email,
+        //            user.FirstName,
+        //            user.LastName
+        //        })
+        //        .ToList();
+
+        //    return Ok(users);
+        //}
+
+
 
         private async Task<string> generateToken(ApplicationUser applicationUser)
         {
@@ -137,36 +254,5 @@ namespace RealEstate.API.Controllers
         }
 
 
-        //private ApiUser Authenticate(ApiUser apiUserInfos)
-        //{
-        //    var hasher = new PasswordHasher<ApplicationUser>();
-        //    var hashedPassword = hasher.HashPassword(null, apiUserInfos.Password);
-        //    var user = _context.Users.FirstOrDefault(x =>
-        //        apiUserInfos.UserName == x.UserName
-        //        && hashedPassword == x.PasswordHash);
-
-        //    if (user == null)
-        //        return null;
-
-
-        //    var roleId = _context.UserRoles.FirstOrDefault(x => x.UserId == user.Id).RoleId;
-        //    var role = _context.Roles.FirstOrDefault(x => x.Id == roleId).Name;
-
-        //    return new ApiUser
-        //    {
-        //        UserName = user?.UserName,
-        //        Role = role
-        //    };
-
-        //    return ApiUsers
-        //        .Users
-        //        .FirstOrDefault(x =>
-        //            x.UserName?.ToLower() == apiUserInfos.UserName
-        //            && x.Password == apiUserInfos.Password
-
-        //        );
-
-
-        //}
     }
 }
