@@ -94,6 +94,27 @@ namespace RealEstate.API.Controllers
         }
 
 
+        [HttpGet("GetUserById/{userId}")]
+        public async Task<IActionResult> GetUserById(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound(new { Message = "User not found." });
+            }
+
+            var userInfo = new
+            {
+                user.UserName,
+                user.Email,
+                user.FirstName,
+                user.LastName
+            };
+
+            return Ok(userInfo);
+        }
+
+
         [HttpPut("UpdateUserInfo")]
         public async Task<IActionResult> UpdateUserInfo([FromBody] UpdateUserInfoRequestDTO updateUserInfoRequestDTO)
         {
@@ -182,25 +203,7 @@ namespace RealEstate.API.Controllers
 
 
 
-        [HttpGet("GetUserById/{userId}")]
-        public async Task<IActionResult> GetUserById(string userId)
-        {
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return NotFound(new { Message = "User not found." });
-            }
-
-            var userInfo = new
-            {
-                user.UserName,
-                user.Email,
-                user.FirstName,
-                user.LastName
-            };
-
-            return Ok(userInfo);
-        }
+        
 
 
         //[Authorize(Roles = "Admin")]
