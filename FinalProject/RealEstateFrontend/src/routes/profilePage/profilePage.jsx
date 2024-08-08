@@ -1,4 +1,3 @@
-import Chat from "../../components/chat/Chat";
 import List from "../../components/list/List";
 import "./profilePage.scss";
 import apiRequest from "../../lib/apiRequest";
@@ -68,18 +67,6 @@ function ProfilePage() {
               errorElement={<p>Error loading posts!</p>}
             >
               {(postResponse) => <List posts={postResponse.data.savedPosts} />}
-            </Await>
-          </Suspense>
-        </div>
-      </div>
-      <div className="chatContainer">
-        <div className="wrapper">
-          <Suspense fallback={<p>Loading...</p>}>
-            <Await
-              resolve={data.chatResponse}
-              errorElement={<p>Error loading chats!</p>}
-            >
-              {(chatResponse) => <Chat chats={chatResponse.data}/>}
             </Await>
           </Suspense>
         </div>
