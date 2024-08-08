@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RealEstate.API.Context;
 using RealEstate.API.DTOs.Photo;
 using RealEstate.API.Entities;
@@ -16,25 +17,33 @@ namespace RealEstate.API.Controllers
             _context = context;
         }
 
-        [HttpPost("CreatePhoto")]
-        public IActionResult CreatePhoto([FromBody] CreatePhotoRequestDTO createPhotoRequestDTO)
+        [HttpPost("Create")]
+        public async Task<IActionResult> CreatePhoto([FromBody] CreatePhotoRequestDTO request)
         {
-            var newPhoto = new Photo
+            if (request == null)
             {
-                PropertyId = createPhotoRequestDTO.PropertyId,
-                PhotoData = createPhotoRequestDTO.PhotoData
+                return BadRequest("Invalid photo data.");
+            }
+
+            // Property'nin var olup olmadığını kontrol et
+            var propertyExists = await _context.Properties.AnyAsync(p => p.Id == request.PropertyId && !p.IsDeleted);
+            if (!propertyExists)
+            {
+                return NotFound("Property not found or it has been deleted.");
+            }
+
+            var photo = new Photo
+            {
+                PropertyId = request.PropertyId,
+                PhotoData = request.PhotoData
             };
 
-            _context.Photos.Add(newPhoto);
-            _context.SaveChanges();
+            _context.Photos.Add(photo);
+            await _context.SaveChangesAsync();
 
-            return Ok(new PhotoResponseDTO
-            {
-                Id = newPhoto.Id,
-                PropertyId = newPhoto.PropertyId,
-                PhotoData = newPhoto.PhotoData
-            });
+            return CreatedAtAction(nameof(GetPhotoById), new { id = photo.Id }, photo);
         }
+
 
 
         [HttpGet("GetPhotoById/{id}")]
@@ -57,6 +66,31 @@ namespace RealEstate.API.Controllers
         }
 
 
+
+        [HttpGet("GetPhotosByPropertyId/{propertyId}")]
+        public async Task<IActionResult> GetPhotosByPropertyId(int propertyId)
+        {
+            var photos = await _context.Photos
+                                       .Where(p => p.PropertyId == propertyId && !p.IsDeleted)
+                                       .ToListAsync();
+
+            if (photos == null || !photos.Any())
+            {
+                return NotFound("No photos found for the given property.");
+            }
+
+            var response = photos.Select(photo => new PhotoResponseDTO
+            {
+                Id = photo.Id,
+                PropertyId = photo.PropertyId,
+                PhotoData = photo.PhotoData
+            }).ToList();
+
+            return Ok(response);
+        }
+
+
+
         [HttpGet("GetAllPhotos")]
         public IActionResult GetAllPhotos()
         {
@@ -72,6 +106,7 @@ namespace RealEstate.API.Controllers
 
             return Ok(photos);
         }
+
 
 
         [HttpDelete("DeletePhoto/{id}")]
