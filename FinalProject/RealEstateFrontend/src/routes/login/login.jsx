@@ -8,7 +8,7 @@ function Login() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const {updateUser} = useContext(AuthContext)
+  const { updateUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -18,24 +18,28 @@ function Login() {
     setError("");
     const formData = new FormData(e.target);
 
-    const username = formData.get("username");
+    const userNameOrEmail = formData.get("username");
     const password = formData.get("password");
 
     try {
-      const res = await apiRequest.post("/auth/login", {
-        username,
+      const res = await apiRequest.post("/User/Login", {
+        userNameOrEmail,
         password,
       });
 
-      updateUser(res.data)
-
-      navigate("/");
+      if (res && res.data) {
+        updateUser(res.data);
+        navigate("/");
+      } else {
+        setError("Unexpected response format");
+      }
     } catch (err) {
-      setError(err.response.data.message);
+      setError(err.response?.data?.message || "An error occurred");
     } finally {
       setIsLoading(false);
     }
-  };
+  }
+
   return (
     <div className="login">
       <div className="formContainer">
@@ -45,7 +49,7 @@ function Login() {
             name="username"
             required
             minLength={3}
-            maxLength={20}
+            maxLength={40}
             type="text"
             placeholder="Username"
           />
