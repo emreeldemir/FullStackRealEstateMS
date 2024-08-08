@@ -8,7 +8,8 @@ export const AuthContextProvider = ({ children }) => {
   );
 
   const updateUser = (data) => {
-    setCurrentUser(data);
+    setCurrentUser(data.user);
+    localStorage.setItem("token", data.token); // Token'ı local storage'a kaydedin
   };
 
   useEffect(() => {
@@ -16,7 +17,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [currentUser]);
 
   return (
-    <AuthContext.Provider value={{ currentUser,updateUser }}>
+    <AuthContext.Provider value={{ currentUser, updateUser }}>
       {children}
     </AuthContext.Provider>
   );
