@@ -69,7 +69,7 @@ namespace RealEstate.API.Controllers
         }
 
 
-        [HttpGet("GetAllStatus")]
+        [HttpGet("GetAllStatuses")]
         public async Task<IActionResult> GetAllStatuses()
         {
             var statuses = await _context.Statuses

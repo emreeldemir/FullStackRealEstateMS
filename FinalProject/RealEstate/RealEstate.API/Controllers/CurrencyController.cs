@@ -18,7 +18,7 @@ namespace RealEstate.API.Controllers
             _context = context;
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public async Task<IActionResult> CreateCurrency([FromBody] CreateCurrencyRequestDTO request)
         {
             if (request == null || string.IsNullOrEmpty(request.Name))
@@ -49,7 +49,7 @@ namespace RealEstate.API.Controllers
 
 
 
-        [HttpGet("{id}")]
+        [HttpGet("GetCurrencyById/{id}")]
         public async Task<IActionResult> GetCurrencyById(int id)
         {
             var currency = await _context.Currencies
@@ -72,7 +72,7 @@ namespace RealEstate.API.Controllers
 
 
 
-        [HttpGet]
+        [HttpGet("GetAllCurrencies")]
         public async Task<IActionResult> GetAllCurrencies()
         {
             var currencies = await _context.Currencies
@@ -88,7 +88,7 @@ namespace RealEstate.API.Controllers
         }
 
 
-        [HttpPut("{id}")]
+        [HttpPut("Update/{id}")]
         public async Task<IActionResult> UpdateCurrency(int id, [FromBody] UpdateCurrencyRequestDTO request)
         {
             if (request == null || string.IsNullOrEmpty(request.Name))
@@ -121,7 +121,7 @@ namespace RealEstate.API.Controllers
 
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeleteCurrency(int id)
         {
             var currency = await _context.Currencies.FindAsync(id);
