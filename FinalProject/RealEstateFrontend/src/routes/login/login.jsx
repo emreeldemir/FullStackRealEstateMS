@@ -22,7 +22,7 @@ function Login() {
     const password = formData.get("password");
 
     try {
-      const res = await apiRequest.post("/User/Login", {
+      const res = await apiRequest.post("/Auth/Login", {
         userNameOrEmail,
         password,
       });
