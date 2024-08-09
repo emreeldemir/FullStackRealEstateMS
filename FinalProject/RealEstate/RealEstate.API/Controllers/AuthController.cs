@@ -19,13 +19,13 @@ namespace RealEstate.API.Controllers
     [ApiController]
     //[Authorize]
     //[Authorize(Roles = "Admin")]
-    public class UserController : ControllerBase
+    public class AuthController : ControllerBase
     {
         private readonly JwtSettings _jwtSettings;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public UserController(IOptions<JwtSettings> jwtSettings, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AuthController(IOptions<JwtSettings> jwtSettings, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _jwtSettings = jwtSettings.Value;
             _userManager = userManager;
