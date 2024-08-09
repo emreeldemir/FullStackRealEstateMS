@@ -23,9 +23,9 @@ function ProfileUpdatePage() {
         username,
         email,
         password,
-        avatar:avatar[0]
+        avatar: avatar[0]
       });
-      updateUser(res.data);
+      //updateUser(res.data);  //ToDo
       navigate("/profile");
     } catch (err) {
       console.log(err);
