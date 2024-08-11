@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 function HomePage() {
 
-  const {currentUser} = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext)
 
   return (
     <div className="homePage">
@@ -13,23 +13,20 @@ function HomePage() {
         <div className="wrapper">
           <h1 className="title">Find Real Estate & Get Your Dream Place</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
-            explicabo suscipit cum eius, iure est nulla animi consequatur
-            facilis id pariatur fugit quos laudantium temporibus dolor ea
-            repellat provident impedit!
+            OBSS .NET CodeCamp 2024 Final Project (Real Estate Management System)
           </p>
           <SearchBar />
           <div className="boxes">
             <div className="box">
-              <h1>16+</h1>
+              <h1>4+</h1>
               <h2>Years of Experience</h2>
             </div>
             <div className="box">
-              <h1>200</h1>
+              <h1>23</h1>
               <h2>Award Gained</h2>
             </div>
             <div className="box">
-              <h1>2000+</h1>
+              <h1>500+</h1>
               <h2>Property Ready</h2>
             </div>
           </div>
