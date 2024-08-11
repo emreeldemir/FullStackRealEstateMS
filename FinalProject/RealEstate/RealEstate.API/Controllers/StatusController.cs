@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.API.Context;
 using RealEstate.API.DTOs.Status;
@@ -17,6 +18,7 @@ namespace RealEstate.API.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost("Create")]
         public async Task<IActionResult> CreateStatus([FromBody] CreateStatusRequestDTO request)
         {
@@ -85,6 +87,7 @@ namespace RealEstate.API.Controllers
         }
 
 
+        [Authorize(Roles = "admin")]
         [HttpPut("Update/{id}")]
         public async Task<IActionResult> UpdateStatus(int id, [FromBody] UpdateStatusRequestDTO request)
         {
@@ -127,6 +130,7 @@ namespace RealEstate.API.Controllers
         }
 
 
+        [Authorize(Roles = "admin")]
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeleteStatus(int id)
         {

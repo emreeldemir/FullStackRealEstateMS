@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.API.Context;
 using RealEstate.API.DTOs.Currency;
@@ -9,6 +10,7 @@ namespace RealEstate.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+  
     public class CurrencyController : ControllerBase
     {
         private readonly RealEstateContext _context;
@@ -18,6 +20,7 @@ namespace RealEstate.API.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost("Create")]
         public async Task<IActionResult> CreateCurrency([FromBody] CreateCurrencyRequestDTO request)
         {
@@ -71,7 +74,7 @@ namespace RealEstate.API.Controllers
         }
 
 
-
+        
         [HttpGet("GetAllCurrencies")]
         public async Task<IActionResult> GetAllCurrencies()
         {
@@ -88,6 +91,7 @@ namespace RealEstate.API.Controllers
         }
 
 
+        [Authorize(Roles = "admin")]
         [HttpPut("Update/{id}")]
         public async Task<IActionResult> UpdateCurrency(int id, [FromBody] UpdateCurrencyRequestDTO request)
         {
@@ -120,7 +124,7 @@ namespace RealEstate.API.Controllers
         }
 
 
-
+        [Authorize(Roles = "admin")]
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeleteCurrency(int id)
         {

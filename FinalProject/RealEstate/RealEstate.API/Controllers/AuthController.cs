@@ -17,8 +17,7 @@ namespace RealEstate.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
-    //[Authorize(Roles = "Admin")]
+    
     public class AuthController : ControllerBase
     {
         private readonly JwtSettings _jwtSettings;
