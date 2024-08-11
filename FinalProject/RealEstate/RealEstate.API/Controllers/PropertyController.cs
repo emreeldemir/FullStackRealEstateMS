@@ -50,6 +50,84 @@ namespace RealEstate.API.Controllers
             return CreatedAtAction(nameof(GetPropertyById), new { id = property.Id }, property);
         }
 
+
+        [Authorize(Roles = "admin, user")]
+        [HttpGet("Search")]
+        public async Task<IActionResult> SearchProperties([FromQuery] PropertySearchRequestDTO request)
+        {
+            var query = _context.Properties
+                                .Include(p => p.Type)
+                                .Include(p => p.Status)
+                                .Include(p => p.Currency)
+                                .Include(p => p.User)
+                                .Include(p => p.Photos)
+                                .Where(p => !p.IsDeleted)
+                                .AsQueryable();
+
+            // Status filtrelemesi
+            if (!string.IsNullOrEmpty(request.Status))
+            {
+                var status = request.Status.ToLower();
+                query = query.Where(p => p.Status.Name.ToLower() == status);
+            }
+
+            // Type filtrelemesi
+            if (!string.IsNullOrEmpty(request.Type))
+            {
+                var type = request.Type.ToLower();
+                query = query.Where(p => p.Type.Name.ToLower() == type);
+            }
+
+            // Currency filtrelemesi
+            if (!string.IsNullOrEmpty(request.Currency))
+            {
+                var currency = request.Currency.ToLower();
+                query = query.Where(p => p.Currency.Name.ToLower() == currency);
+            }
+
+            // Fiyat filtrelemesi
+            if (request.MinPrice.HasValue)
+            {
+                query = query.Where(p => p.Price >= request.MinPrice.Value);
+            }
+            if (request.MaxPrice.HasValue)
+            {
+                query = query.Where(p => p.Price <= request.MaxPrice.Value);
+            }
+
+            var properties = await query.ToListAsync();
+
+            var response = properties.Select(property => new PropertyResponseDTO
+            {
+                Id = property.Id,
+                Title = property.Title,
+                Description = property.Description,
+                TypeId = property.TypeId,
+                TypeName = property.Type.Name,
+                StatusId = property.StatusId,
+                StatusName = property.Status.Name,
+                StartDate = property.StartDate,
+                EndDate = property.EndDate,
+                Price = property.Price,
+                CurrencyId = property.CurrencyId,
+                CurrencyName = property.Currency.Name,
+                UserId = property.UserId,
+                UserName = property.User.UserName,
+                Longitude = property.Longitude,
+                Latitude = property.Latitude,
+                Photos = property.Photos.Select(photo => new PhotoResponseDTO
+                {
+                    Id = photo.Id,
+                    PhotoData = photo.PhotoData
+                }).ToList()
+            });
+
+            return Ok(response);
+        }
+
+
+
+
         [Authorize(Roles = "admin, user")]
         [HttpGet("GetPropertyById/{id}")]
         public async Task<IActionResult> GetPropertyById(int id)
