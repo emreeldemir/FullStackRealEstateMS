@@ -74,7 +74,7 @@ namespace RealEstate.API.Controllers
         {
             ApplicationUser user;
 
-            // Check if the input is an email or a username
+            // Kullanıcı adı ya da email kontrolü
             if (userLoginRequestDTO.UserNameOrEmail.Contains("@"))
             {
                 user = await _userManager.FindByEmailAsync(userLoginRequestDTO.UserNameOrEmail);
@@ -90,8 +90,16 @@ namespace RealEstate.API.Controllers
             }
 
             var token = await generateToken(user);
-            return Ok(new { Token = token });
+
+            // Token, Username ve Email'in döndürülmesi
+            return Ok(new
+            {
+                Token = token,
+                Username = user.UserName,
+                Email = user.Email
+            });
         }
+
 
 
         [HttpGet("GetUserById/{userId}")]
