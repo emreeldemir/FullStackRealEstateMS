@@ -1,17 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "./filter.scss";
 import { useSearchParams } from "react-router-dom";
+import apiRequest from "../../lib/apiRequest";
 
 function Filter() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState({
     type: searchParams.get("type") || "",
-    city: searchParams.get("city") || "",
-    property: searchParams.get("property") || "",
+    status: searchParams.get("status") || "",
+    currency: searchParams.get("currency") || "",
     minPrice: searchParams.get("minPrice") || "",
     maxPrice: searchParams.get("maxPrice") || "",
-    bedroom: searchParams.get("bedroom") || "",
   });
+
+  // Dropdown verilerini saklamak için state'ler
+  const [types, setTypes] = useState([]);
+  const [statuses, setStatuses] = useState([]);
+  const [currencies, setCurrencies] = useState([]);
+
+  // Dropdown menü verilerini API'den çek
+  useEffect(() => {
+    apiRequest.get("/Type/GetAllTypes")
+      .then((response) => {
+        setTypes(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => console.error("Error fetching property types:", error));
+
+    apiRequest.get("/Status/GetAllStatuses")
+      .then((response) => {
+        setStatuses(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => console.error("Error fetching statuses:", error));
+
+    apiRequest.get("/Currency/GetAllCurrencies")
+      .then((response) => {
+        setCurrencies(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => console.error("Error fetching currencies:", error));
+  }, []);
 
   const handleChange = (e) => {
     setQuery({
@@ -26,22 +56,7 @@ function Filter() {
 
   return (
     <div className="filter">
-      <h1>
-        Search results for <b>{searchParams.get("city")}</b>
-      </h1>
-      <div className="top">
-        <div className="item">
-          <label htmlFor="city">Location</label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            placeholder="City Location"
-            onChange={handleChange}
-            defaultValue={query.city}
-          />
-        </div>
-      </div>
+      <h1>Search results</h1>
       <div className="bottom">
         <div className="item">
           <label htmlFor="type">Type</label>
@@ -51,24 +66,44 @@ function Filter() {
             onChange={handleChange}
             defaultValue={query.type}
           >
-            <option value="">any</option>
-            <option value="buy">Buy</option>
-            <option value="rent">Rent</option>
+            <option value="">Any</option>
+            {types.map((type) => (
+              <option key={type.id} value={type.name}>
+                {type.name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="item">
-          <label htmlFor="property">Property</label>
+          <label htmlFor="status">Status</label>
           <select
-            name="property"
-            id="property"
+            name="status"
+            id="status"
             onChange={handleChange}
-            defaultValue={query.property}
+            defaultValue={query.status}
           >
-            <option value="">any</option>
-            <option value="apartment">Apartment</option>
-            <option value="house">House</option>
-            <option value="condo">Condo</option>
-            <option value="land">Land</option>
+            <option value="">Any</option>
+            {statuses.map((status) => (
+              <option key={status.id} value={status.name}>
+                {status.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="item">
+          <label htmlFor="currency">Currency</label>
+          <select
+            name="currency"
+            id="currency"
+            onChange={handleChange}
+            defaultValue={query.currency}
+          >
+            <option value="">Any</option>
+            {currencies.map((currency) => (
+              <option key={currency.id} value={currency.name}>
+                {currency.name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="item">
@@ -77,7 +112,7 @@ function Filter() {
             type="number"
             id="minPrice"
             name="minPrice"
-            placeholder="any"
+            placeholder="Any"
             onChange={handleChange}
             defaultValue={query.minPrice}
           />
@@ -85,27 +120,16 @@ function Filter() {
         <div className="item">
           <label htmlFor="maxPrice">Max Price</label>
           <input
-            type="text"
+            type="number"
             id="maxPrice"
             name="maxPrice"
-            placeholder="any"
+            placeholder="Any"
             onChange={handleChange}
             defaultValue={query.maxPrice}
           />
         </div>
-        <div className="item">
-          <label htmlFor="bedroom">Bedroom</label>
-          <input
-            type="text"
-            id="bedroom"
-            name="bedroom"
-            placeholder="any"
-            onChange={handleChange}
-            defaultValue={query.bedroom}
-          />
-        </div>
         <button onClick={handleFilter}>
-          <img src="/search.png" alt="" />
+          <img src="/search.png" alt="Search" />
         </button>
       </div>
     </div>

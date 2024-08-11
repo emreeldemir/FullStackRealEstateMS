@@ -9,7 +9,7 @@ export const AuthContextProvider = ({ children }) => {
   );
 
   const updateUser = (data) => {
-    setCurrentUser(data?.token || null);  // Burada `data` kontrol ediliyor
+    setCurrentUser(data?.token || null);
     console.log("Token:", data?.token || "No token");
   };
 
