@@ -48,7 +48,7 @@ namespace RealEstate.API.Controllers
             return CreatedAtAction(nameof(GetTypeById), new { id = type.Id }, type);
         }
 
-
+        [Authorize(Roles = "admin, user")]
         [HttpGet("GetTypeById/{id}")]
         public async Task<IActionResult> GetTypeById(int id)
         {
@@ -70,7 +70,7 @@ namespace RealEstate.API.Controllers
             return Ok(response);
         }
 
-
+        [Authorize(Roles = "admin, user")]
         [HttpGet("GetAllTypes")]
         public async Task<IActionResult> GetAllTypes()
         {

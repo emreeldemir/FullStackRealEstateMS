@@ -100,7 +100,7 @@ namespace RealEstate.API.Controllers
         }
 
 
-
+        [Authorize(Roles = "admin, user")]
         [HttpGet("GetUserById/{userId}")]
         public async Task<IActionResult> GetUserById(string userId)
         {
@@ -121,7 +121,7 @@ namespace RealEstate.API.Controllers
             return Ok(userInfo);
         }
 
-
+        [Authorize(Roles = "admin, user")]
         [HttpPut("UpdateUserInfo")]
         public async Task<IActionResult> UpdateUserInfo([FromBody] UpdateUserInfoRequestDTO updateUserInfoRequestDTO)
         {

@@ -48,7 +48,7 @@ namespace RealEstate.API.Controllers
             return CreatedAtAction(nameof(GetStatusById), new { id = status.Id }, status);
         }
 
-
+        [Authorize(Roles = "admin, user")]
         [HttpGet("GetStatusById/{id}")]
         public async Task<IActionResult> GetStatusById(int id)
         {
@@ -70,7 +70,7 @@ namespace RealEstate.API.Controllers
             return Ok(response);
         }
 
-
+        [Authorize(Roles = "admin, user")]
         [HttpGet("GetAllStatuses")]
         public async Task<IActionResult> GetAllStatuses()
         {

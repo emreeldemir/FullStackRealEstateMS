@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.API.Context;
 using RealEstate.API.DTOs.Photo;
@@ -17,6 +18,7 @@ namespace RealEstate.API.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost("Create")]
         public async Task<IActionResult> CreatePhoto([FromBody] CreatePhotoRequestDTO request)
         {
@@ -45,7 +47,7 @@ namespace RealEstate.API.Controllers
         }
 
 
-
+        [Authorize(Roles = "admin, user")]
         [HttpGet("GetPhotoById/{id}")]
         public IActionResult GetPhotoById(int id)
         {
@@ -66,7 +68,7 @@ namespace RealEstate.API.Controllers
         }
 
 
-
+        [Authorize(Roles = "admin, user")]
         [HttpGet("GetPhotosByPropertyId/{propertyId}")]
         public async Task<IActionResult> GetPhotosByPropertyId(int propertyId)
         {
@@ -90,7 +92,7 @@ namespace RealEstate.API.Controllers
         }
 
 
-
+        [Authorize(Roles = "admin, user")]
         [HttpGet("GetAllPhotos")]
         public IActionResult GetAllPhotos()
         {
@@ -108,7 +110,7 @@ namespace RealEstate.API.Controllers
         }
 
 
-
+        [Authorize(Roles = "admin")]
         [HttpDelete("DeletePhoto/{id}")]
         public IActionResult DeletePhoto(int id)
         {

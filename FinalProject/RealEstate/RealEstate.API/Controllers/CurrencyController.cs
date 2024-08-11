@@ -51,7 +51,7 @@ namespace RealEstate.API.Controllers
         }
 
 
-
+        [Authorize(Roles = "admin, user")]
         [HttpGet("GetCurrencyById/{id}")]
         public async Task<IActionResult> GetCurrencyById(int id)
         {
@@ -74,7 +74,7 @@ namespace RealEstate.API.Controllers
         }
 
 
-        
+        [Authorize(Roles = "admin, user")]
         [HttpGet("GetAllCurrencies")]
         public async Task<IActionResult> GetAllCurrencies()
         {
