@@ -8,15 +8,24 @@ using System.Text;
 using RealEstate.API.Models;
 using Microsoft.OpenApi.Models;
 
-
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configurationManager = builder.Configuration;
 
-
 // Add services to the container.
 
+// .NET Core Identity Configuration
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+})
+.AddEntityFrameworkStores<RealEstateContext>()
+.AddDefaultTokenProviders();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+builder.Services.AddAuthentication(options => {
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters
@@ -38,17 +47,11 @@ builder.Services.Configure<JwtSettings>(configurationManager.GetSection("Jwt"));
 builder.Services.AddDbContext<RealEstateContext>(options =>
     options.UseSqlServer(configurationManager.GetConnectionString("RealEstate")));
 
-// .NET Core Identity Configuration
-builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
-{
-    // Kimlik doðrulama seçeneklerini burada yapýlandýracam
-    options.SignIn.RequireConfirmedAccount = true;
-})
-.AddEntityFrameworkStores<RealEstateContext>()
-.AddDefaultTokenProviders();
+
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Swagger Configuration
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -82,6 +85,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+// CORS Policy
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",
@@ -105,6 +109,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowReactApp");
 
+// Important Middleware Order
 app.UseAuthentication();
 app.UseAuthorization();
 
