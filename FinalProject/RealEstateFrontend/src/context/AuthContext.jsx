@@ -5,19 +5,18 @@ export const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
 
   const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("token")) || null
+    JSON.parse(localStorage.getItem("user")) || null
   );
 
   const updateUser = (data) => {
-    setCurrentUser(data?.token || null);
-    console.log("Token:", data?.token || "No token");
+    setCurrentUser(data || null);
   };
 
   useEffect(() => {
     if (currentUser) {
-      localStorage.setItem("token", JSON.stringify(currentUser));
+      localStorage.setItem("user", JSON.stringify(currentUser));
     } else {
-      localStorage.removeItem("token");
+      localStorage.removeItem("user");
     }
   }, [currentUser]);
 
