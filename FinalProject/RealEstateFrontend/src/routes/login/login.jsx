@@ -51,7 +51,7 @@ function Login() {
             minLength={3}
             maxLength={40}
             type="text"
-            placeholder="Username"
+            placeholder="Username or Email"
           />
           <input
             name="password"
