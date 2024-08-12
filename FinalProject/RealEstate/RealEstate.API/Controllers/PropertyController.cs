@@ -254,24 +254,25 @@ namespace RealEstate.API.Controllers
                 Title = property.Title,
                 Description = property.Description,
                 TypeId = property.TypeId,
-                TypeName = property.Type.Name,
+                TypeName = property.Type?.Name,
                 StatusId = property.StatusId,
-                StatusName = property.Status.Name,
+                StatusName = property.Status?.Name,
                 StartDate = property.StartDate,
                 EndDate = property.EndDate,
                 Price = property.Price,
                 CurrencyId = property.CurrencyId,
-                CurrencyName = property.Currency.Name,
+                CurrencyName = property.Currency?.Name,
                 UserId = property.UserId,
-                UserName = property.User.UserName,
+                UserName = property.User?.UserName,
                 Longitude = property.Longitude,
                 Latitude = property.Latitude,
                 Photos = property.Photos.Select(photo => new PhotoResponseDTO
                 {
                     Id = photo.Id,
-                    PhotoData = photo.PhotoData // Ensure this matches PhotoResponseDTO
+                    PhotoData = photo.PhotoData
                 }).ToList()
             };
+
 
             return Ok(response);
         }
