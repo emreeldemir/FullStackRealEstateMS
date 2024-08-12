@@ -44,7 +44,7 @@ function NewPostPage() {
           restaurant: parseInt(inputs.restaurant),
         },
       });
-      navigate("/"+res.data.id)
+      navigate("/" + res.data.id)
     } catch (err) {
       console.log(err);
       setError(error);
@@ -65,26 +65,31 @@ function NewPostPage() {
               <label htmlFor="price">Price</label>
               <input id="price" name="price" type="number" />
             </div>
+            {/* AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA CITYYYYY */}
             <div className="item">
+              <label htmlFor="city">Currency</label>
+              <input id="city" name="city" type="text" />
+            </div>
+
+            {/* <div className="item">
               <label htmlFor="address">Address</label>
               <input id="address" name="address" type="text" />
-            </div>
+            </div> */}
+
             <div className="item description">
               <label htmlFor="desc">Description</label>
               <ReactQuill theme="snow" onChange={setValue} value={value} />
             </div>
-            <div className="item">
-              <label htmlFor="city">City</label>
-              <input id="city" name="city" type="text" />
-            </div>
-            <div className="item">
+
+
+            {/* <div className="item">
               <label htmlFor="bedroom">Bedroom Number</label>
               <input min={1} id="bedroom" name="bedroom" type="number" />
-            </div>
-            <div className="item">
+            </div> */}
+            {/* <div className="item">
               <label htmlFor="bathroom">Bathroom Number</label>
               <input min={1} id="bathroom" name="bathroom" type="number" />
-            </div>
+            </div> */}
             <div className="item">
               <label htmlFor="latitude">Latitude</label>
               <input id="latitude" name="latitude" type="text" />
@@ -112,22 +117,22 @@ function NewPostPage() {
               </select>
             </div>
 
-            <div className="item">
+            {/* <div className="item">
               <label htmlFor="utilities">Utilities Policy</label>
               <select name="utilities">
                 <option value="owner">Owner is responsible</option>
                 <option value="tenant">Tenant is responsible</option>
                 <option value="shared">Shared</option>
               </select>
-            </div>
-            <div className="item">
+            </div> */}
+            {/* <div className="item">
               <label htmlFor="pet">Pet Policy</label>
               <select name="pet">
                 <option value="allowed">Allowed</option>
                 <option value="not-allowed">Not Allowed</option>
               </select>
-            </div>
-            <div className="item">
+            </div> */}
+            {/* <div className="item">
               <label htmlFor="income">Income Policy</label>
               <input
                 id="income"
@@ -135,12 +140,12 @@ function NewPostPage() {
                 type="text"
                 placeholder="Income Policy"
               />
-            </div>
-            <div className="item">
+            </div> */}
+            {/* <div className="item">
               <label htmlFor="size">Total Size (sqft)</label>
               <input min={0} id="size" name="size" type="number" />
-            </div>
-            <div className="item">
+            </div> */}
+            {/* <div className="item">
               <label htmlFor="school">School</label>
               <input min={0} id="school" name="school" type="number" />
             </div>
@@ -151,7 +156,7 @@ function NewPostPage() {
             <div className="item">
               <label htmlFor="restaurant">Restaurant</label>
               <input min={0} id="restaurant" name="restaurant" type="number" />
-            </div>
+            </div> */}
             <button className="sendButton">Add</button>
             {error && <span>error</span>}
           </form>
