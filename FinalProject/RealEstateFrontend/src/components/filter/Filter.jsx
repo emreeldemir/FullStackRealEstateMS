@@ -40,7 +40,7 @@ function Filter() {
             onChange={handleChange}
             defaultValue={query.type}
           >
-            <option value="">Any</option>
+            <option value="">All</option>
             {types.map((type) => (
               <option key={type.id} value={type.name}>
                 {type.name}
@@ -56,7 +56,7 @@ function Filter() {
             onChange={handleChange}
             defaultValue={query.status}
           >
-            <option value="">Any</option>
+            <option value="">All</option>
             {statuses.map((status) => (
               <option key={status.id} value={status.name}>
                 {status.name}
@@ -72,7 +72,7 @@ function Filter() {
             onChange={handleChange}
             defaultValue={query.currency}
           >
-            <option value="">Any</option>
+            <option value="">All</option>
             {currencies.map((currency) => (
               <option key={currency.id} value={currency.name}>
                 {currency.name}
@@ -86,7 +86,7 @@ function Filter() {
             type="number"
             id="minPrice"
             name="minPrice"
-            placeholder="Any"
+            placeholder="All"
             onChange={handleChange}
             defaultValue={query.minPrice}
           />
@@ -97,7 +97,7 @@ function Filter() {
             type="number"
             id="maxPrice"
             name="maxPrice"
-            placeholder="Any"
+            placeholder="All"
             onChange={handleChange}
             defaultValue={query.maxPrice}
           />
