@@ -96,14 +96,16 @@ namespace RealEstate.API.Controllers
 
             var token = await generateToken(user);
 
-            // Token, Username ve Email'in döndürülmesi
+            // Token, Username, Email ve UserId'in döndürülmesi
             return Ok(new
             {
                 Token = token,
                 Username = user.UserName,
-                Email = user.Email
+                Email = user.Email,
+                UserId = user.Id
             });
         }
+
 
 
         [Authorize(Roles = "admin, user")]
