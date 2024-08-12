@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -129,50 +130,45 @@ namespace RealEstate.API.Controllers
             return Ok(userInfo);
         }
 
+
+
         [Authorize(Roles = "admin, user")]
         [HttpPut("UpdateUserInfo")]
         public async Task<IActionResult> UpdateUserInfo([FromBody] UpdateUserInfoRequestDTO updateUserInfoRequestDTO)
         {
-            var user = await _userManager.FindByIdAsync(updateUserInfoRequestDTO.UserId);
+            var user = await _userManager.FindByIdAsync(updateUserInfoRequestDTO.UserId.ToString());
             if (user == null)
             {
                 return NotFound(new { Message = "User not found!" });
             }
 
-            // Check if new UserName is already taken (only if it's being changed)
-            if (!string.IsNullOrEmpty(updateUserInfoRequestDTO.UserName) &&
-                !updateUserInfoRequestDTO.UserName.Equals(user.UserName) &&
-                await _userManager.FindByNameAsync(updateUserInfoRequestDTO.UserName) != null)
+            // Username already taken check
+            if (await _userManager.FindByNameAsync(updateUserInfoRequestDTO.UserName) != null &&
+                !updateUserInfoRequestDTO.UserName.Equals(user.UserName))
             {
                 return BadRequest(new { Message = "Username is already taken!" });
             }
 
-            // Check if new Email is already used (only if it's being changed)
-            if (!string.IsNullOrEmpty(updateUserInfoRequestDTO.Email) &&
-                !updateUserInfoRequestDTO.Email.Equals(user.Email) &&
-                await _userManager.FindByEmailAsync(updateUserInfoRequestDTO.Email) != null)
+            // Email already in use check
+            if (await _userManager.FindByEmailAsync(updateUserInfoRequestDTO.Email) != null &&
+                !updateUserInfoRequestDTO.Email.Equals(user.Email))
             {
                 return BadRequest(new { Message = "Email is already in use!" });
             }
 
             // Update fields
-            if (!string.IsNullOrEmpty(updateUserInfoRequestDTO.UserName))
-            {
-                user.UserName = updateUserInfoRequestDTO.UserName;
-            }
-            if (!string.IsNullOrEmpty(updateUserInfoRequestDTO.Email))
-            {
-                user.Email = updateUserInfoRequestDTO.Email;
-            }
-            if (!string.IsNullOrEmpty(updateUserInfoRequestDTO.NewPassword))
-            {
-                var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var result = await _userManager.ResetPasswordAsync(user, resetToken, updateUserInfoRequestDTO.NewPassword);
+            user.UserName = updateUserInfoRequestDTO.UserName;
+            user.Email = updateUserInfoRequestDTO.Email;
+            user.FirstName = updateUserInfoRequestDTO.UserName;
+            user.LastName = updateUserInfoRequestDTO.UserName;
 
-                if (!result.Succeeded)
-                {
-                    return BadRequest(result.Errors);
-                }
+            // Password update
+            var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var result = await _userManager.ResetPasswordAsync(user, resetToken, updateUserInfoRequestDTO.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Errors);
             }
 
             var updateResult = await _userManager.UpdateAsync(user);
@@ -186,11 +182,12 @@ namespace RealEstate.API.Controllers
             {
                 UserName = user.UserName,
                 Email = user.Email
-                // Note: Password is not returned in the response
             };
 
             return Ok(responseDTO);
         }
+
+
 
 
 
@@ -218,7 +215,7 @@ namespace RealEstate.API.Controllers
 
 
 
-        
+
 
 
         //[Authorize(Roles = "Admin")]
