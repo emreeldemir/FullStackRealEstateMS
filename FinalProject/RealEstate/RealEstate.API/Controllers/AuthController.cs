@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using RealEstate.API.Context;
-using RealEstate.API.DTOs.User;
+using RealEstate.API.DTOs.Auth;
 using RealEstate.API.Entities.Identity;
 using RealEstate.API.Models;
 using RealEstate.API.Services;
@@ -34,6 +34,11 @@ namespace RealEstate.API.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] UserRegisterRequestDTO userRegisterRequestDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             // Check if a user with the same email or username already exists
             var existingUserByEmail = await _userManager.FindByEmailAsync(userRegisterRequestDTO.Email);
             var existingUserByUsername = await _userManager.FindByNameAsync(userRegisterRequestDTO.UserName);
@@ -66,6 +71,7 @@ namespace RealEstate.API.Controllers
             await _userManager.AddToRoleAsync(user, "User");
             return Ok(new { Message = "User Created Successfully!" });
         }
+
 
 
         [HttpPost("Login")]
