@@ -2,6 +2,7 @@ import { useContext } from "react";
 import SearchBar from "../../components/searchBar/SearchBar";
 import "./homePage.scss";
 import { AuthContext } from "../../context/AuthContext";
+import { DropdownContextProvider } from "../../context/DropdownContext";
 
 function HomePage() {
 
@@ -15,7 +16,9 @@ function HomePage() {
           <p>
             OBSS .NET CodeCamp 2024 Final Project (Real Estate Management System)
           </p>
-          <SearchBar />
+          <DropdownContextProvider>
+            <SearchBar />
+          </DropdownContextProvider>
           <div className="boxes">
             <div className="box">
               <h1>4+</h1>
