@@ -4,6 +4,7 @@ import Card from "../../components/card/Card";
 import Map from "../../components/map/Map";
 import { Await, useLoaderData } from "react-router-dom";
 import { Suspense } from "react";
+import { DropdownContextProvider } from "../../context/DropdownContext";
 
 function ListPage() {
   const data = useLoaderData();
@@ -12,7 +13,9 @@ function ListPage() {
     <div className="listPage">
       <div className="listContainer">
         <div className="wrapper">
-          <Filter />
+          <DropdownContextProvider>
+            <Filter />
+          </DropdownContextProvider>
           <Suspense fallback={<p>Loading...</p>}>
             <Await
               resolve={data.postResponse}

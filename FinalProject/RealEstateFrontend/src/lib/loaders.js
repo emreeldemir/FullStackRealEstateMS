@@ -6,9 +6,10 @@ export const singlePageLoader = async ({ request, params }) => {
   return res.data;
 };
 export const listPageLoader = async ({ request, params }) => {
+  console.log(request.url);
   const query = request.url.split("?")[1];
   const postPromise = apiRequest("/Property/Search?" + query);
-  console.log(query);
+  const postResponse = await postPromise;
   return defer({
     postResponse: postPromise,
   });

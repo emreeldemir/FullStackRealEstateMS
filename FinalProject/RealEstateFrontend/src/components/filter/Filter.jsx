@@ -3,8 +3,11 @@ import axios from "axios";
 import "./filter.scss";
 import { useSearchParams } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
+import { useContext } from "react";
+import { DropdownContext } from "../../context/DropdownContext";
 
 function Filter() {
+  const { types, statuses, currencies } = useContext(DropdownContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState({
     type: searchParams.get("type") || "",
@@ -13,35 +16,6 @@ function Filter() {
     minPrice: searchParams.get("minPrice") || "",
     maxPrice: searchParams.get("maxPrice") || "",
   });
-
-  // Dropdown verilerini saklamak için state'ler
-  const [types, setTypes] = useState([]);
-  const [statuses, setStatuses] = useState([]);
-  const [currencies, setCurrencies] = useState([]);
-
-  // Dropdown menü verilerini API'den çek
-  useEffect(() => {
-    apiRequest.get("/Type/GetAllTypes")
-      .then((response) => {
-        setTypes(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => console.error("Error fetching property types:", error));
-
-    apiRequest.get("/Status/GetAllStatuses")
-      .then((response) => {
-        setStatuses(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => console.error("Error fetching statuses:", error));
-
-    apiRequest.get("/Currency/GetAllCurrencies")
-      .then((response) => {
-        setCurrencies(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => console.error("Error fetching currencies:", error));
-  }, []);
 
   const handleChange = (e) => {
     setQuery({
