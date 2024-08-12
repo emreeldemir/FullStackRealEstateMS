@@ -16,17 +16,26 @@ function ProfileUpdatePage() {
     e.preventDefault();
     const formData = new FormData(e.target);
 
-    const { username, email, password } = Object.fromEntries(formData);
+    const { userName, email, newPassword } = Object.fromEntries(formData);
+    console.log(Object.fromEntries(formData))
+
+    const request = {
+      userId: currentUser.userId,
+      userName,
+      email,
+      newPassword
+    };
 
     try {
-      const res = await apiRequest.put(`/users/${currentUser.id}`, {
-        username,
-        email,
-        password,
-        avatar: avatar[0]
-      });
-      //updateUser(res.data);  //ToDo
-      navigate("/profile");
+      const res = await apiRequest.put("/Auth/UpdateUserInfo", request);
+      if (res && res.data) {
+        // updateUser(res.data);
+        updateUser(null);
+        navigate("/");
+        //navigate("/profile");
+      } else {
+        setError("Unexpected response format");
+      }
     } catch (err) {
       console.log(err);
       setError(err.response.data.message);
@@ -39,12 +48,12 @@ function ProfileUpdatePage() {
         <form onSubmit={handleSubmit}>
           <h1>Update Profile</h1>
           <div className="item">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="userName">Username</label>
             <input
-              id="username"
-              name="username"
+              id="userName"
+              name="userName"
               type="text"
-              defaultValue={currentUser.username}
+              defaultValue={currentUser.userName}
             />
           </div>
           <div className="item">
@@ -57,14 +66,15 @@ function ProfileUpdatePage() {
             />
           </div>
           <div className="item">
-            <label htmlFor="password">Password</label>
-            <input id="password" name="password" type="password" />
+            <label htmlFor="newPassword">Password</label>
+            <input id="newPassword" name="newPassword" type="password" />
           </div>
+
           <button>Update</button>
           {error && <span>error</span>}
         </form>
       </div>
-      <div className="sideContainer">
+      {/* <div className="sideContainer">
         <img src={avatar[0] || currentUser.avatar || "/noavatar.jpg"} alt="" className="avatar" />
         <UploadWidget
           uwConfig={{
@@ -76,7 +86,7 @@ function ProfileUpdatePage() {
           }}
           setState={setAvatar}
         />
-      </div>
+      </div> */}
     </div>
   );
 }

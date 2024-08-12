@@ -28,10 +28,6 @@ function ProfilePage() {
           </div>
           <div className="info">
             <span>
-              Avatar:
-              <img src={currentUser.avatar || "noavatar.jpg"} alt="" />
-            </span>
-            <span>
               Username: <b>{currentUser.username}</b>
             </span>
             <span>
