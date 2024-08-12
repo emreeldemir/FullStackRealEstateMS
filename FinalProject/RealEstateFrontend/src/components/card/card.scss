@@ -80,23 +80,18 @@
           align-items: center;
           padding: 8px 12px;
           background-color: #aad3df;
-          /* Arka plan rengi */
           border-radius: 5px;
-          /* Köşeleri yuvarlamak */
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          /* Hafif gölge */
         }
 
         .listedBy {
           font-weight: bold;
           margin-right: 5px;
-          /* Kullanıcı adından önce biraz boşluk bırakmak için */
         }
 
         .userName {
           font-weight: normal;
           color: #333;
-          /* Kullanıcı adının rengini ayarlayabilirsiniz */
         }
 
 
