@@ -19,6 +19,7 @@
       border-radius: 10px;
     }
   }
+
   .textContainer {
     flex: 3;
     display: flex;
@@ -60,15 +61,44 @@
       width: max-content;
     }
 
+
+
     .bottom {
       display: flex;
       justify-content: space-between;
       gap: 10px;
+      align-items: center;
 
       .features {
         display: flex;
         gap: 20px;
         font-size: 14px;
+        align-items: center;
+
+        .listedByContainer {
+          display: flex;
+          align-items: center;
+          padding: 8px 12px;
+          background-color: #aad3df;
+          /* Arka plan rengi */
+          border-radius: 5px;
+          /* Köşeleri yuvarlamak */
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          /* Hafif gölge */
+        }
+
+        .listedBy {
+          font-weight: bold;
+          margin-right: 5px;
+          /* Kullanıcı adından önce biraz boşluk bırakmak için */
+        }
+
+        .userName {
+          font-weight: normal;
+          color: #333;
+          /* Kullanıcı adının rengini ayarlayabilirsiniz */
+        }
+
 
         .feature {
           display: flex;
@@ -78,7 +108,10 @@
           padding: 5px;
           border-radius: 5px;
         }
+
+
       }
+
 
       .icons {
         display: flex;
@@ -90,7 +123,7 @@
           border-radius: 5px;
           cursor: pointer;
           display: flex;
-          align-items: center;
+          align-items: end;
           justify-content: center;
 
           &:hover {
