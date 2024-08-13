@@ -20,7 +20,7 @@ namespace RealEstate.API.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, user")]
         [HttpPost("Create")]
         public async Task<IActionResult> CreateProperty([FromBody] CreatePropertyRequestDTO request)
         {
