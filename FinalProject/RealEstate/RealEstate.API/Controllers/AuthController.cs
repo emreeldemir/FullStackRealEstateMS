@@ -217,8 +217,6 @@ namespace RealEstate.API.Controllers
 
 
 
-
-        //[Authorize(Roles = "Admin")]
         //[HttpGet("GetAllUsers")]
         //public async Task<IActionResult> GetAllUsers(int pageNumber = 1, int pageSize = 10)
         //{
