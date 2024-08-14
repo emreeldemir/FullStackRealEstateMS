@@ -10,6 +10,9 @@ import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 import NewPostPage from "./routes/newPostPage/newPostPage";
 import { DropdownContextProvider } from "./context/DropdownContext";
 import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loaders";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function App() {
   const router = createBrowserRouter([
@@ -65,7 +68,16 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer
+        autoClose={1500}
+        position="top-center"
+      />
+    </>
+  );
+
 }
 
 export default App;
