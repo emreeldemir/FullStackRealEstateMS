@@ -14,19 +14,20 @@ export const singlePageLoader = async ({ request, params }) => {
 export const listPageLoader = async ({ request, params }) => {
   console.log(request.url);
   const query = request.url.split("?")[1];
-  const postPromise = apiRequest("/Property/Search?" + query);
-  const postResponse = await postPromise;
+  const postPromise = await apiRequest("/Property/Search?" + query);
+  console.log(postPromise);
   return defer({
     postResponse: postPromise,
   });
 };
 
 export const profilePageLoader = async () => {
-  const promise = apiRequest("/Property/GetAllProperties");
-  const filteredResults = promise.filter(result => result.userId === 8);
+  const promise = await apiRequest("/Property/GetAllProperties");
+  console.log(promise);
+  //const filteredResults = promise.filter(result => result.userId === 8);
 
   return defer({
-    postResponse: filteredResults,
+    postResponse: promise,
 
   });
 };

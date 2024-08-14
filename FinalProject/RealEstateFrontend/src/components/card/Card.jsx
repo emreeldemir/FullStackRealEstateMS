@@ -6,6 +6,9 @@ function Card({ item }) {
   const formatPrice = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
+  const formatDesc = (description) => {
+    return description.replace(/<p[^>]*>(.*?)<\/p>/g, '$1');
+  };
 
   return (
     <div className="card">
@@ -21,7 +24,7 @@ function Card({ item }) {
 
         {/* Açıklama */}
         <p className="description">
-          <span>{item.description}</span>
+          <span>{formatDesc(item.description)}</span>
         </p>
 
         {/* Fiyat ve Para Birimi */}

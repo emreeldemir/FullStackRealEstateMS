@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 function ProfilePage() {
   const data = useLoaderData();
+  console.log(data.postResponse);
 
   const { updateUser, currentUser } = useContext(AuthContext);
 
@@ -41,14 +42,14 @@ function ProfilePage() {
               <button>Create New Post</button>
             </Link>
           </div>
-          {/* <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<p>Loading...</p>}>
             <Await
-              resolve={data.postResponse}
+              resolve={data}
               errorElement={<p>Error loading posts!</p>}
             >
-              {(postResponse) => <List posts={postResponse.data.userPosts} />}
+              {(postResponse) => <List posts={data} />}
             </Await>
-          </Suspense> */}
+          </Suspense>
           <div className="title">
             <h1>Saved List</h1>
           </div>
