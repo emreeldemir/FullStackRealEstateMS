@@ -36,11 +36,16 @@
 
         button {
           padding: 12px 24px;
-          background-color: #0c9963;
+          background-color: #008080;
           cursor: pointer;
           border: none;
-          border-radius: 6px;
+          border-radius: 5px;
           color: white;
+          transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+          background-color: #025757;
         }
       }
 
@@ -56,13 +61,18 @@
         }
 
         button {
-          width: 100px;
-          background-color: #f3636a;
+          width: 80px;
+          background-color: #f43b44;
           border: none;
           color: white;
           padding: 10px 20px;
           cursor: pointer;
           border-radius: 5px;
+          transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+          background-color: #c9141d;
         }
 
         img {
