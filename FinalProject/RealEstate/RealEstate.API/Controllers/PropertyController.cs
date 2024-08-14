@@ -277,7 +277,7 @@ namespace RealEstate.API.Controllers
             return Ok(response);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, user")]
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeleteProperty(int id)
         {
