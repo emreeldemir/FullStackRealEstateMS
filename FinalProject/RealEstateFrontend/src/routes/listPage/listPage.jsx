@@ -2,12 +2,17 @@ import "./listPage.scss";
 import Filter from "../../components/filter/Filter";
 import Card from "../../components/card/Card";
 import Map from "../../components/map/Map";
-import { Await, useLoaderData } from "react-router-dom";
+import { Await, useLoaderData, useNavigate } from "react-router-dom";
 import { Suspense } from "react";
 import { DropdownContextProvider } from "../../context/DropdownContext";
 
 function ListPage() {
   const data = useLoaderData();
+  const navigate = useNavigate();
+
+  const onDelete = (id) => {
+    navigate(0);
+  };
 
   return (
     <div className="listPage">
@@ -23,7 +28,7 @@ function ListPage() {
             >
               {(postResponse) =>
                 postResponse.data.map((post) => (
-                  <Card key={post.id} item={post} />
+                  <Card key={post.id} item={post} onDelete={onDelete} />
                 ))
               }
             </Await>

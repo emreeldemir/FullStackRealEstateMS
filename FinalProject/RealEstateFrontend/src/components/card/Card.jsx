@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Card({ item }) {
+function Card({ item, onDelete }) {
   const { currentUser } = useContext(AuthContext);
 
   const formatPrice = (price) => {
