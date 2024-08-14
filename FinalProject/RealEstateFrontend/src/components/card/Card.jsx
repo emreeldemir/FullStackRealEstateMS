@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./card.scss";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import apiRequest from "../../lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
@@ -76,9 +76,9 @@ function Card({ item }) {
             {(currentUser.username === "admin" || currentUser.userId === item.userId) && (
               <div className="icons">
                 <div className="icon">
-                  <DeleteIcon
-                    onClick={() => handleClick(item.id)}  // item.id'yi handleClick'e geçiriyoruz
-                    style={{ color: 'red', cursor: 'pointer' }}
+                  <DeleteForeverIcon
+                    onClick={() => handleClick(item.id)}
+                    style={{ color: '#eb233a', cursor: 'pointer' }}
                   />
                 </div>
               </div>
