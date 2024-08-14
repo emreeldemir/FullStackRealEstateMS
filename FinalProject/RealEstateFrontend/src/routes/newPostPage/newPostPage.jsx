@@ -7,6 +7,9 @@ import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
 import { DropdownContext } from "../../context/DropdownContext";
 import { AuthContext } from "../../context/AuthContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function NewPostPage() {
   const { types, statuses, currencies } = useContext(DropdownContext);
@@ -64,11 +67,11 @@ function NewPostPage() {
       } catch (err) {
         console.log(err);
       }
+      toast.success("Post created successfully!");
       navigate("/");
-      console.log(res);
       //navigate("/" + res.data.id)  TODO EMRE TODO
     } catch (err) {
-      console.log(err);
+      toast.error("Creating post failed. Please try again!");
       setError(error);
     }
   };

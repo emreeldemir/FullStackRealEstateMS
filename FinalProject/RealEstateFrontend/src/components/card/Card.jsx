@@ -4,6 +4,8 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import apiRequest from "../../lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Card({ item }) {
   const { currentUser } = useContext(AuthContext);
@@ -19,7 +21,7 @@ function Card({ item }) {
     try {
       const response = await apiRequest.delete(`/Property/Delete/${id}`);
       onDelete(id);
-      console.log('Delete successful', response.data);
+      toast.success("Item deleted successfully!");
     } catch (error) {
       console.error('There was an error deleting the item!', error);
     }
