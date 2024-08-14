@@ -4,6 +4,9 @@ import apiRequest from "../../lib/apiRequest";
 import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
 import { Suspense, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function ProfilePage() {
   const data = useLoaderData();
@@ -12,6 +15,7 @@ function ProfilePage() {
 
   const handleLogout = async () => {
     updateUser(null);
+    toast.success("Logged out!");
     navigate("/");
   };
 
