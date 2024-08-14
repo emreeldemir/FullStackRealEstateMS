@@ -4,6 +4,6 @@
     {
         public int PropertyId { get; set; }
         public Property Property { get; set; }
-        public string PhotoData { get; set; } // Base64 formatında fotoğraf verisi
+        public string PhotoData { get; set; } // URL for the photo
     }
 }
