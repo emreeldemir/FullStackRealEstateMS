@@ -15,8 +15,8 @@ function Navbar() {
           <span>Emre Estate</span>
         </a>
         <a href="/">Home</a>
-        {/* <a href="/">About</a>
-        <a href="/">Contact</a> */}
+        <a href="/">About</a>
+        <a href="/">Contact</a>
       </div>
       <div className="right">
         {currentUser ? (
