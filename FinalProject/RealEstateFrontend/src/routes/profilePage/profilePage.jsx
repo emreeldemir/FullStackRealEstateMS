@@ -7,16 +7,14 @@ import { AuthContext } from "../../context/AuthContext";
 
 function ProfilePage() {
   const data = useLoaderData();
-  console.log(data.postResponse);
-
   const { updateUser, currentUser } = useContext(AuthContext);
-
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     updateUser(null);
     navigate("/");
   };
+
   return (
     <div className="profilePage">
       <div className="details">
