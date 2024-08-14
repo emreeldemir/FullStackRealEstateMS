@@ -1,13 +1,28 @@
 import { Link } from "react-router-dom";
 import "./card.scss";
+import DeleteIcon from '@mui/icons-material/Delete';
+import apiRequest from "../../lib/apiRequest";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
 function Card({ item }) {
-  // Fiyatı formatlama fonksiyonu
+  const { currentUser } = useContext(AuthContext);
+
   const formatPrice = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
   const formatDesc = (description) => {
     return description.replace(/<p[^>]*>(.*?)<\/p>/g, '$1');
+  };
+
+  const handleClick = async (id) => {
+    try {
+      const response = await apiRequest.delete(`/Property/Delete/${id}`);
+      onDelete(id);
+      console.log('Delete successful', response.data);
+    } catch (error) {
+      console.error('There was an error deleting the item!', error);
+    }
   };
 
   return (
@@ -58,11 +73,16 @@ function Card({ item }) {
               <span className="listedBy">Listed by:</span>
               <span className="userName">{item.userName}</span>
             </div>
-            <div className="icons">
-              <div className="icon">
-                <img src="/save.png" alt="" />
+            {(currentUser.username === "admin" || currentUser.userId === item.userId) && (
+              <div className="icons">
+                <div className="icon">
+                  <DeleteIcon
+                    onClick={() => handleClick(item.id)}  // item.id'yi handleClick'e geçiriyoruz
+                    style={{ color: 'red', cursor: 'pointer' }}
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
 
