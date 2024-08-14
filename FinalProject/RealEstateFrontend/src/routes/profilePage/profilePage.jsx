@@ -22,7 +22,7 @@ function ProfilePage() {
       <div className="details">
         <div className="wrapper">
           <div className="title">
-            <h1>User Information</h1>
+            <h1 style={{ fontWeight: 'bold' }}>User Information</h1>
             <Link to="/profile/update">
               <button>Update Profile</button>
             </Link>
@@ -37,7 +37,7 @@ function ProfilePage() {
             <button onClick={handleLogout}>Logout</button>
           </div>
           <div className="title">
-            <h1>My List</h1>
+            <h1 style={{ fontWeight: 'bold' }}>My List</h1>
             <Link to="/add">
               <button>Create New Post</button>
             </Link>
@@ -50,9 +50,9 @@ function ProfilePage() {
               {(postResponse) => <List posts={data} />}
             </Await>
           </Suspense>
-          <div className="title">
+          {/* <div className="title">
             <h1>Saved List</h1>
-          </div>
+          </div> */}
           {/* <Suspense fallback={<p>Loading...</p>}>
             <Await
               resolve={data.postResponse}
