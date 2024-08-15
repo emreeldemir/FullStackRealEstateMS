@@ -3,8 +3,10 @@ import Slider from "../../components/slider/Slider";
 import Map from "../../components/map/Map";
 import { useLoaderData } from "react-router-dom";
 import DOMPurify from "dompurify";
+import { useTranslation } from 'react-i18next';
 
 function SinglePage() {
+  const { t } = useTranslation();
   const post = useLoaderData();
   const photoUrls = post.photos.map(photo => photo.photoData);
 
@@ -47,23 +49,23 @@ function SinglePage() {
 
         <div className="wrapper">
 
-          <p className="title">General</p>
+          <p className="title">{t('general')}</p>
           <div className="listVertical">
             <div className="feature">
               <div className="featureText">
-                <span>Status</span>
+                <span>{t('status')}</span>
                 <p>{post.statusName}</p>
               </div>
             </div>
             <div className="feature">
               <div className="featureText">
-                <span>Type</span>
+                <span>{t('type')}</span>
                 <p>{post.typeName}</p>
               </div>
             </div>
           </div>
 
-          <p className="title">Location</p>
+          <p className="title">{t('location')}</p>
           <div className="mapContainer">
             <Map items={[post]} />
           </div>

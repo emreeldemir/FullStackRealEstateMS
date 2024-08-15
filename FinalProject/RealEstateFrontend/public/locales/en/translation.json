@@ -32,5 +32,7 @@
     "update": "Update",
     "register": "Register",
     "create-an-account": "Create an Account",
-    "do-you-have-an-account": "Do you have an account?"
+    "do-you-have-an-account": "Do you have an account?",
+    "location": "Location",
+    "general": "General"
 }

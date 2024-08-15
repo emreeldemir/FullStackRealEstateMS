@@ -32,5 +32,7 @@
     "update": "Güncelle",
     "register": "Kayıt Ol",
     "create-an-account": "Hesap Oluştur",
-    "do-you-have-an-account": "Hesabınız var mı?"
+    "do-you-have-an-account": "Hesabınız var mı?",
+    "location": "Konum",
+    "general": "Genel"
 }
