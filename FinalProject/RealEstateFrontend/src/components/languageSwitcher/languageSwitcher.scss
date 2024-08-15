@@ -1,0 +1,69 @@
+.language-switcher {
+    position: relative;
+    margin-left: 10px;
+
+    .dropdown-button {
+        padding: 10px 15px;
+        font-size: 16px;
+        color: #333;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        /* Buton görünümünü sadeleştirmek için border eklendi */
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* Text ve iconu aralıklı yerleştirmek için kullanıldı */
+        width: 100%;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: #f1f1f1;
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        &::after {
+            /* Dropdown ok işareti eklemek için */
+            content: '▼';
+            font-size: 12px;
+            margin-left: 8px;
+        }
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #9a8585;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        overflow: hidden;
+        z-index: 10;
+        min-width: 100%;
+
+        button {
+            padding: 8px 12px;
+            font-size: 14px;
+            color: #333;
+            background-color: #fff;
+            border: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #f1f1f1;
+            }
+
+            &:focus {
+                outline: none;
+                background-color: #e9ecef;
+            }
+        }
+    }
+}
