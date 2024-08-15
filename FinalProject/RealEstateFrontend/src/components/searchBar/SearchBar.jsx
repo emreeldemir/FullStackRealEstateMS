@@ -23,7 +23,7 @@ function SearchBar() {
         <select name="type" onChange={handleChange} value={query.type}>
           <option value="">Select Type</option>
           {types.map((type) => (
-            <option key={type.id} value={type.id}>
+            <option key={type.name} value={type.name}>
               {type.name}
             </option>
           ))}
@@ -32,7 +32,7 @@ function SearchBar() {
         <select name="status" onChange={handleChange} value={query.status}>
           <option value="">Select Status</option>
           {statuses.map((status) => (
-            <option key={status.id} value={status.id}>
+            <option key={status.name} value={status.name}>
               {status.name}
             </option>
           ))}
@@ -41,7 +41,7 @@ function SearchBar() {
         <select name="currency" onChange={handleChange} value={query.currency}>
           <option value="">Select Currency</option>
           {currencies.map((currency) => (
-            <option key={currency.id} value={currency.id}>
+            <option key={currency.name} value={currency.name}>
               {currency.name}
             </option>
           ))}
