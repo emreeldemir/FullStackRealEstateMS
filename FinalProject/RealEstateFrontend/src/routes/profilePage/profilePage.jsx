@@ -5,9 +5,11 @@ import { Suspense, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from 'react-i18next';
 
 
 function ProfilePage() {
+  const { t } = useTranslation();
   const data = useLoaderData();
   const { updateUser, currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -23,24 +25,24 @@ function ProfilePage() {
       <div className="details">
         <div className="wrapper">
           <div className="title">
-            <h1 style={{ fontWeight: 'bold' }}>User Information</h1>
+            <h1 style={{ fontWeight: 'bold' }}>{t('user-info')}</h1>
             <Link to="/profile/update">
-              <button>Update Profile</button>
+              <button>{t('update-profile')}</button>
             </Link>
           </div>
           <div className="info">
             <span>
-              Username: <b>{currentUser.username}</b>
+              {t('username')}: <b>{currentUser.username}</b>
             </span>
             <span>
-              E-mail: <b>{currentUser.email}</b>
+              {t('email')}: <b>{currentUser.email}</b>
             </span>
-            <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleLogout}>{t('logout')}</button>
           </div>
           <div className="title">
-            <h1 style={{ fontWeight: 'bold' }}>My List</h1>
+            <h1 style={{ fontWeight: 'bold' }}>{t('my-list')}</h1>
             <Link to="/add">
-              <button>Create New Post</button>
+              <button>{t('create-new-post')}</button>
             </Link>
           </div>
           <Suspense fallback={<p>Loading...</p>}>

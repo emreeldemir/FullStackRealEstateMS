@@ -9,5 +9,12 @@
     "homepage-subtitle": "OBSS .NET CodeCamp 2024 Final Projesi (Emlak Yönetim Sistemi)",
     "years-of-experience": "Yıllık Deneyim",
     "award-gained": "Kazanılan Ödül",
-    "property-ready": "Hazır Emlak"
+    "property-ready": "Hazır Emlak",
+    "user-info": "Kullanıcı Bilgileri",
+    "update-profile": "Profil Güncelle",
+    "username": "Kullanıcı Adı",
+    "email": "E-posta",
+    "logout": "Çıkış Yap",
+    "my-list": "Listem",
+    "create-new-post": "Yeni İlan Oluştur"
 }

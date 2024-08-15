@@ -9,5 +9,12 @@
     "homepage-subtitle": "OBSS .NET CodeCamp 2024 Final Project (Real Estate Management System)",
     "years-of-experience": "Years of Experience",
     "award-gained": "Award Gained",
-    "property-ready": "Property Ready"
+    "property-ready": "Property Ready",
+    "user-info": "User Information",
+    "update-profile": "Update Profile",
+    "username": "Username",
+    "email": "E-mail",
+    "logout": "Logout",
+    "my-list": "My List",
+    "create-new-post": "Create New Post"
 }
