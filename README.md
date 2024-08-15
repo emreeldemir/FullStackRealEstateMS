@@ -1,9 +1,18 @@
-<h1 align = "center"> OBSS .NET CodeCamp 2024 Final Project </h1>
 
-<h2 align = "center"> Real Estate Management System </h2>
+<div align="center" style="font-size: 30px;>
+
+OBSS .NET CodeCamp 2024 Final Project
+
+</div>
+
+<div align="center" style="font-size: 25px;>
+
+Real Estate Management System
+
+</div>
 
 
-<div align="center" style="font-size: 18px;>
+<div align="center" style="font-size: 22px;>
 
 [Emre Eldemir](https://www.linkedin.com/in/emreeldemir/)
 
