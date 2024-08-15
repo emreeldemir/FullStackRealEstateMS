@@ -9,9 +9,11 @@ import { DropdownContext } from "../../context/DropdownContext";
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from 'react-i18next';
 
 
 function NewPostPage() {
+  const { t } = useTranslation();
   const { types, statuses, currencies } = useContext(DropdownContext);
   const { currentUser } = useContext(AuthContext);
   const [value, setValue] = useState("");
@@ -77,11 +79,11 @@ function NewPostPage() {
   return (
     <div className="newPostPage">
       <div className="formContainer">
-        <h1>Add New Post</h1>
+        <h1>{t('add-new-post')}</h1>
         <div className="wrapper">
           <form onSubmit={handleSubmit}>
             <div className="item title">
-              <label htmlFor="title">Title</label>
+              <label htmlFor="title">{t('title')}</label>
               <input
                 id="title"
                 name="title"
@@ -92,12 +94,12 @@ function NewPostPage() {
             </div>
 
             <div className="item description">
-              <label htmlFor="desc">Description</label>
+              <label htmlFor="desc">{t('description')}</label>
               <ReactQuill theme="snow" onChange={setValue} value={value} />
             </div>
 
             <div className="item">
-              <label htmlFor="price">Price</label>
+              <label htmlFor="price">{t('price')}</label>
               <input
                 id="price"
                 name="price"
@@ -108,7 +110,7 @@ function NewPostPage() {
             </div>
 
             <div className="item">
-              <label htmlFor="currency">Currency</label>
+              <label htmlFor="currency">{t('currency')}</label>
               <select
                 name="currency"
                 id="currency"
@@ -124,7 +126,7 @@ function NewPostPage() {
             </div>
 
             <div className="item">
-              <label htmlFor="type">Type</label>
+              <label htmlFor="type">{t('type')}</label>
               <select
                 name="type"
                 id="type"
@@ -140,7 +142,7 @@ function NewPostPage() {
             </div>
 
             <div className="item">
-              <label htmlFor="status">Status</label>
+              <label htmlFor="status">{t('status')}</label>
               <select
                 name="status"
                 id="status"
@@ -156,7 +158,7 @@ function NewPostPage() {
             </div>
 
             <div className="item">
-              <label htmlFor="latitude">Latitude</label>
+              <label htmlFor="latitude">{t('latitude')}</label>
               <input
                 id="latitude"
                 name="latitude"
@@ -167,7 +169,7 @@ function NewPostPage() {
             </div>
 
             <div className="item">
-              <label htmlFor="longitude">Longitude</label>
+              <label htmlFor="longitude">{t('longitude')}</label>
               <input
                 id="longitude"
                 name="longitude"
@@ -177,7 +179,7 @@ function NewPostPage() {
               />
             </div>
 
-            <button className="sendButton" type="submit">Create New Post</button>
+            <button className="sendButton" type="submit">{t('create-new-post')}</button>
             {error && <span>{error}</span>}
           </form>
         </div>

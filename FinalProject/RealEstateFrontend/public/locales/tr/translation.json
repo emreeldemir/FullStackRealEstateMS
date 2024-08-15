@@ -18,5 +18,14 @@
     "my-list": "Listem",
     "create-new-post": "Yeni İlan Oluştur",
     "login": "Giris Yap",
-    "welcome-back": "Tekrar Hoşgeldiniz"
+    "welcome-back": "Tekrar Hoşgeldiniz",
+    "add-new-post": "Yeni İlan Ekle",
+    "title": "Başlık",
+    "description": "Açıklama",
+    "price": "Fiyat",
+    "currency": "Para Birimi",
+    "type": "Tür",
+    "status": "Durum",
+    "latitude": "Enlem",
+    "longitude": "Boylam"
 }

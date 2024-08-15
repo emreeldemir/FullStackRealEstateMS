@@ -18,5 +18,14 @@
     "my-list": "My List",
     "create-new-post": "Create New Post",
     "login": "Login",
-    "welcome-back": "Welcome back"
+    "welcome-back": "Welcome back",
+    "add-new-post": "Add New Post",
+    "title": "Title",
+    "description": "Description",
+    "price": "Price",
+    "currency": "Currency",
+    "type": "Type",
+    "status": "Status",
+    "latitude": "Latitude",
+    "longitude": "Longitude"
 }
