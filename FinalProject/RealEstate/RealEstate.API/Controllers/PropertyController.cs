@@ -215,7 +215,7 @@ namespace RealEstate.API.Controllers
             return Ok(response);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, user")]
         [HttpPut("Update/{id}")]
         public async Task<IActionResult> UpdateProperty(int id, [FromBody] UpdatePropertyRequestDTO request)
         {
