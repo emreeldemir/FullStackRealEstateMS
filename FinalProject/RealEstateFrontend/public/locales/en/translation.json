@@ -42,5 +42,7 @@
     "select-type": "Select Type",
     "select-status": "Select Status",
     "select-currency": "Select Currency",
-    "language": "Language"
+    "language": "Language",
+    "logged-in": "Logged in successfully!",
+    "logged-out": "Logged out successfully!"
 }

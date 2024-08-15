@@ -34,7 +34,7 @@ function Login() {
 
       if (res && res.data) {
         updateUser(res.data);
-        toast.success("Logged in successfully!");
+        toast.success(t('logged-in'));
         navigate("/");
       } else {
         setError("Unexpected response format");

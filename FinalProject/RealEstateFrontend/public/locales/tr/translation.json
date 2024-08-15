@@ -42,5 +42,7 @@
     "select-type": "Tür Seçin",
     "select-status": "Durum Seçin",
     "select-currency": "Para Birimi Seçin",
-    "language": "Dil"
+    "language": "Dil",
+    "logged-in": "Başarıyla giriş yapıldı!",
+    "logged-out": "Başarıyla çıkış yapıldı!"
 }

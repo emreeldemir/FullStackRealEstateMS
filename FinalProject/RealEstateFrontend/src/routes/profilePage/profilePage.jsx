@@ -16,7 +16,7 @@ function ProfilePage() {
 
   const handleLogout = async () => {
     updateUser(null);
-    toast.success("Logged out!");
+    toast.success(t('logged-out'));
     navigate("/");
   };
 
