@@ -11,6 +11,7 @@
 ## Project Overview
 
 The **Real Estate App** is a comprehensive platform designed for managing property listings with a focus on usability and efficiency. This application enables users to browse, create, and manage property listings, while providing robust features for both end-users and administrators.
+
 <br>
 
 
