@@ -27,7 +27,7 @@ function SinglePage() {
             <div className="top">
               <div className="post">
                 <h1>{post.title}</h1>
-                <div className="price">$ {formattedPrice}</div>
+                <div className="price"> {formattedPrice} {post.currencyName}</div>
               </div>
               <div className="user">
                 <img src="/userAvatar3.jpg" alt="" />
