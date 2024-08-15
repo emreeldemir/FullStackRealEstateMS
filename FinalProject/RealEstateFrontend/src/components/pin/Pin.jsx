@@ -14,7 +14,7 @@ function Pin({ item }) {
           <img src={item.photos[0]?.photoData} alt="" />
           <div className="textContainer">
             <Link to={`/${item.id}`}>{item.title}</Link>
-            <b>$ {formatPrice(item.price)}</b>
+            <b>{formatPrice(item.price)} {item.currencyName} </b>
           </div>
         </div>
       </Popup>
