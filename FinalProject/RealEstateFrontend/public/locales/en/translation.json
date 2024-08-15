@@ -29,5 +29,8 @@
     "latitude": "Latitude",
     "longitude": "Longitude",
     "password": "Password",
-    "update": "Update"
+    "update": "Update",
+    "register": "Register",
+    "create-an-account": "Create an Account",
+    "do-you-have-an-account": "Do you have an account?"
 }

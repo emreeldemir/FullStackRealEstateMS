@@ -2,8 +2,10 @@ import "./register.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import apiRequest from "../../lib/apiRequest";
+import { useTranslation } from 'react-i18next';
 
 function Register() {
+  const { t } = useTranslation();
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -82,14 +84,14 @@ function Register() {
     <div className="registerPage">
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
-          <h1>Create an Account</h1>
+          <h1>{t('create-an-account')}</h1>
           <input name="username" type="text" placeholder="Username" />
           {errors.username && <p className="error">{errors.username}</p>}
           <input name="email" type="text" placeholder="Email" />
           {errors.email && <p className="error">{errors.email}</p>}
           <input name="password" type="password" placeholder="Password" />
           {errors.password && <p className="error">{errors.password}</p>}
-          <button disabled={isLoading}>Register</button>
+          <button disabled={isLoading}>{t('register')}</button>
           {errors.api && (
             <div className="errorContainer">
               {errors.api.map((error, index) => (
@@ -97,7 +99,7 @@ function Register() {
               ))}
             </div>
           )}
-          <Link to="/login">Do you have an account?</Link>
+          <Link to="/login">{t('do-you-have-an-account')}</Link>
         </form>
       </div>
       <div className="imgContainer">

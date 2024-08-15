@@ -29,5 +29,8 @@
     "latitude": "Enlem",
     "longitude": "Boylam",
     "password": "Şifre",
-    "update": "Güncelle"
+    "update": "Güncelle",
+    "register": "Kayıt Ol",
+    "create-an-account": "Hesap Oluştur",
+    "do-you-have-an-account": "Hesabınız var mı?"
 }
