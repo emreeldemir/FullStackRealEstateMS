@@ -5,13 +5,18 @@ import Map from "../../components/map/Map";
 import { Await, useLoaderData, useNavigate } from "react-router-dom";
 import { Suspense } from "react";
 import { DropdownContextProvider } from "../../context/DropdownContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ListPage() {
   const data = useLoaderData();
   const navigate = useNavigate();
 
   const onDelete = (id) => {
-    navigate(0);
+    toast.success("Item deleted successfully!", {
+      autoClose: 800,
+      onClose: () => navigate(0)
+    });
   };
 
   return (
