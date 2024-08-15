@@ -19,8 +19,9 @@ namespace FinalQuiz.API.Controllers
         }
 
 
-        //Burada ConcurrentDictionary kullanmayı düşündüm fakat
-        //ConcurrentDictionary herhangi bir bellek yönetimi veya süre sonu politikası içermiyor. 
+        // Burada "ConcurrentDictionary" kullanmayı düşündüm fakat
+        // "ConcurrentDictionary" herhangi bir bellek yönetimi veya süre sonu politikası içermiyor, buna ihtiyacım var mı emin değilim fakat
+        // ilk etapta bunu kullanarak yaptım.
         [HttpGet]
         [Route("RequestCounter")]
         public ActionResult RequestCounter()
@@ -28,7 +29,6 @@ namespace FinalQuiz.API.Controllers
             string cacheKey = "RequestCounter";
             int count;
 
-            // Thread-safe increment
             lock (_lock)
             {
                 if (!_memoryCache.TryGetValue(cacheKey, out count))
@@ -41,12 +41,42 @@ namespace FinalQuiz.API.Controllers
             }
 
             return Ok(new { Message = "This endpoint has been called " + count + " times today." });
+
+            // Bana öyle bir Kod yazın ki
+            // Bu endpointin günde kaç kere çağırıldığını saysın.
+
+            // Çağırımı saymak 10 puan
+            // Static keyword'ünü kullanmadan saymak 10 puan
+            // Eşzamanlı çağırımların davranışını ele almak 10 puan
+
         }
 
+
+
+
+
+        // Burada server kapanmamalı, bu sebeple bu endpoint'i çağırdıktan sonra
+        // 5 saniyelik bekleme süresinde "RequestCounter" endpoint'ini de çağırarak çalıştığını gözlemledim.
+        // Exception'ları array'de tuttum bu sayede yeni bir exception eklemek istediğimde array'e ekleyerek yapabilirim.
+        // Bunun yerine switch-case yapısı kullanarak da yapabilirdim fakat array ile yapmak daha esnek olacaktır diye düşündüm.
         [HttpGet]
         [Route("MimicException")]
-        public ActionResult MimicException()
+        public async Task<ActionResult> MimicException()
         {
+            await Task.Delay(5000);
+
+            var exceptions = new Exception[]
+            {
+                new ArgumentNullException("Parameter cannot be null."),
+                new IndexOutOfRangeException("Index was out of range."),
+                new NullReferenceException("Object reference not set to an instance of an object.")
+            };
+                     
+            var random = new Random();
+            var selectedException = exceptions[random.Next(exceptions.Length)];
+
+            throw selectedException;
+
             // Bana öyle bir Kod yazın ki
             // Sizin servisinizi çağıracak olan bir ekip, 
             // 5 sn bekledikten sonra aşağıdaki 3 exception'dan bir tanesi rastgele olarak alıyor olsun.
@@ -56,8 +86,11 @@ namespace FinalQuiz.API.Controllers
             // Rastgele exception dönmek 5 puan
             // 5sn bekledikten sonra yanıt dönmek 10 puan
 
-            return Ok();
+
         }
+
+
+
 
         [HttpGet]
         [Route("GetStatistics")]
