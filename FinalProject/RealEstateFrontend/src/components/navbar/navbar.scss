@@ -52,7 +52,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    background-color: #fcf5f3;
+    // background-color: #f1e7f5;
     height: 100%;
 
     @include md {
@@ -85,7 +85,7 @@ nav {
 
       .profile {
         padding: 12px 24px;
-        background-color: #5ca1ccbe;
+        background-color: #f2c85e;
         cursor: pointer;
         border: none;
         border-radius: 5px;

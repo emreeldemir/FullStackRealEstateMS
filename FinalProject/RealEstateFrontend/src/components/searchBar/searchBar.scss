@@ -41,7 +41,6 @@
     }
 
     select,
-    // Dropdown menüler için
     input {
       border: none;
       padding: 0px 10px;
@@ -77,9 +76,8 @@
         border: 1px solid #999;
       }
 
-      // Dropdown stilini özelleştirmek için
       select {
-        appearance: none; // Tarayıcı varsayılan stilini kaldırmak için
+        appearance: none;
         background-color: white;
         border: 1px solid #999;
         border-radius: 5px;
@@ -88,14 +86,14 @@
 
         &:focus {
           outline: none;
-          border-color: #fece51;
+          border-color: #86b9d9;
         }
       }
     }
 
     a {
       flex: 1;
-      background-color: #fece51;
+      background-color: #86b9d9;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -103,7 +101,7 @@
       button {
         border: none;
         cursor: pointer;
-        background-color: #fece51;
+        background-color: #86b9d9;
 
         @include sm {
           padding: 10px;

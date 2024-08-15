@@ -12,7 +12,7 @@
   .details {
     flex: 3;
     height: 100%;
-    overflow-y: scroll;
+    // overflow-y: scroll;
 
     @include md {
       flex: none;
@@ -26,12 +26,14 @@
       @include lg {
         padding-right: 20px;
       }
+
       @include md {
         padding-right: 0px;
       }
 
       .info {
         margin-top: 50px;
+
         .top {
           display: flex;
           justify-content: space-between;
@@ -45,9 +47,11 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+
             h1 {
               font-weight: 400;
             }
+
             .address {
               display: flex;
               gap: 5px;
@@ -60,6 +64,7 @@
                 height: 16px;
               }
             }
+
             .price {
               padding: 5px;
               background-color: rgba(254, 205, 81, 0.438);
@@ -69,15 +74,16 @@
               font-weight: 300;
             }
           }
+
           .user {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-            padding: 0px 50px;
+            gap: 15px;
+            padding: 20px;
             border-radius: 10px;
-            background-color: rgba(254, 205, 81, 0.209);
+            background-color: #86b9d9;
             font-weight: 600;
 
             @include sm {
@@ -85,13 +91,14 @@
             }
 
             img {
-              width: 50px;
-              height: 50px;
+              width: 40px;
+              height: 40px;
               border-radius: 50%;
               object-fit: cover;
             }
           }
         }
+
         .bottom {
           margin-top: 50px;
           color: #555;
@@ -100,11 +107,13 @@
       }
     }
   }
+
   .features {
     flex: 2;
-    background-color: #fcf5f3;
-    height: 100%;
-    overflow-y: scroll;
+    background-color: #c1c1c16e;
+    border-radius: 8px;
+    height: 90%;
+    // overflow-y: scroll;
 
     @include md {
       flex: none;
@@ -131,6 +140,7 @@
         font-weight: bold;
         font-size: 18px;
         margin-bottom: 10px;
+        margin-top: 40px;
       }
 
       .feature {
@@ -146,6 +156,7 @@
           span {
             font-weight: bold;
           }
+
           p {
             font-size: 14px;
           }
@@ -160,6 +171,7 @@
         background-color: white;
         border-radius: 10px;
       }
+
       .listHorizontal {
         display: flex;
         justify-content: space-between;

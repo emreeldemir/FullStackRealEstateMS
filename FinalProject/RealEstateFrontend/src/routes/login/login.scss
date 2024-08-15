@@ -14,13 +14,13 @@
       flex-direction: column;
       gap: 20px;
 
-      input{
+      input {
         padding: 20px;
         border: 1px solid gray;
         border-radius: 5px;
       }
 
-      button{
+      button {
         padding: 20px;
         border-radius: 5px;
         border: none;
@@ -29,17 +29,17 @@
         font-weight: bold;
         cursor: pointer;
 
-        &:disabled{
+        &:disabled {
           background-color: #BED9D8;
           cursor: not-allowed;
         }
       }
 
-      span{
+      span {
         color: rgba(255, 0, 0, 0.591);
       }
 
-      a{
+      a {
         font-size: 14px;
         color: gray;
         border-bottom: 1px solid gray;
@@ -50,10 +50,11 @@
 
   .imgContainer {
     flex: 2;
-    background-color: #fcf5f3;
+    background-color: #f1e7f5;
     display: flex;
     align-items: center;
     justify-content: center;
+
     img {
       width: 100%;
     }
