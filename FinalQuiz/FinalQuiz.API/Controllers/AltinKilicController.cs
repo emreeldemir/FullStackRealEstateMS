@@ -1,6 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Caching.Memory;
+using System.Reflection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FinalQuiz.API.Controllers
 {
@@ -29,7 +35,8 @@ namespace FinalQuiz.API.Controllers
         [Route("RequestCounter")]
         public ActionResult RequestCounter()
         {
-            string cacheKey = "RequestCounter";
+            /// Endpoint anahtarını oluştur
+            string cacheKey = $"{ControllerContext.ActionDescriptor.ControllerName}/{ControllerContext.ActionDescriptor.ActionName}";
             int count;
 
             lock (_lock)
@@ -41,9 +48,11 @@ namespace FinalQuiz.API.Controllers
 
                 count++;
                 _memoryCache.Set(cacheKey, count);
+
+                _logger.LogInformation($"Updated cache for {cacheKey}: {count}");
             }
 
-            return Ok(new { Message = "This endpoint has been called " + count + " times today." });
+            return Ok(new { Message = $"This endpoint has been called {count} times today." });
 
             // Bana öyle bir Kod yazın ki
             // Bu endpointin günde kaç kere çağırıldığını saysın.
@@ -95,22 +104,70 @@ namespace FinalQuiz.API.Controllers
 
 
 
+
         [HttpGet]
         [Route("GetStatistics")]
         public ActionResult GetStatistics()
         {
-            // Bana öyle bir altyapı hazırlayın ki
-            // Bu endpoint çağırıldığında yanıt olarak
-            // Bu projedeki hangi endpointin kaç kere çağırıldığının istatistiğini tutsun.
-            // Örn : RequestCounter:10, MimicException:3 benzeri bir yanıt dönsün.
+            var statistics = new Dictionary<string, int>();
 
-            // Uygulama çalışmaya başladığından beri ki yanıtı dönmek 15 puan
-            // Bulunduğum takvim günü 00:00 dan beri ki istatistiği dönmek +5 puan (öncül işlem tamamlanmalı)
-            // Yeni bir endpoint eklediğimde, hiçbir geliştirme yapmadan onu da saymaya başlaması;
-            //      Doğru yöntemi bulmak 10 puan (görmeyi beklediğim kodlar var, çalışmasada onu görmem yeterli)
-            //      Doğru yöntemi tamamlamak 20 puan (çalışmasını beklerim)
+            // Dinamik olarak endpoint'leri al
+            var endpointData = Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .Where(t => typeof(ControllerBase).IsAssignableFrom(t))
+                .SelectMany(t => t.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)
+                .Where(m => m.GetCustomAttributes(typeof(HttpMethodAttribute), true).Length > 0)
+                .Select(m => new { Controller = t.Name, Method = m.Name }))
+                .ToList();
 
-            return Ok();
+            foreach (var endpoint in endpointData)
+            {
+                string endpointName = $"{endpoint.Controller}/{endpoint.Method}";
+
+                // Cache'den count'u al
+                int count = GetCurrentCount(endpointName);
+
+                // İstatistikler sözlüğüne ekle
+                statistics[endpointName] = count;
+
+                _logger.LogInformation($"Endpoint: {endpointName}, Count: {count}");
+            }
+
+            return Ok(statistics);
+
+
+        // Bana öyle bir altyapı hazırlayın ki
+        // Bu endpoint çağırıldığında yanıt olarak
+        // Bu projedeki hangi endpointin kaç kere çağırıldığının istatistiğini tutsun.
+        // Örn : RequestCounter:10, MimicException:3 benzeri bir yanıt dönsün.
+
+        // Uygulama çalışmaya başladığından beri ki yanıtı dönmek 15 puan
+        // Bulunduğum takvim günü 00:00 dan beri ki istatistiği dönmek +5 puan (öncül işlem tamamlanmalı)
+        // Yeni bir endpoint eklediğimde, hiçbir geliştirme yapmadan onu da saymaya başlaması;
+        // Doğru yöntemi bulmak 10 puan (görmeyi beklediğim kodlar var, çalışmasada onu görmem yeterli)
+        // Doğru yöntemi tamamlamak 20 puan (çalışmasını beklerim)
+
+
+        }
+
+        [HttpGet]
+        [Route("TestCache")]
+        public ActionResult TestCache()
+        {
+            string testKey = "TestKey";
+            int testCount = 1;
+
+            _memoryCache.Set(testKey, testCount);
+            int retrievedCount = _memoryCache.TryGetValue(testKey, out int count) ? count : 0;
+
+            return Ok(new { TestKey = testKey, StoredCount = testCount, RetrievedCount = retrievedCount });
+        }
+
+        private int GetCurrentCount(string endpoint)
+        {
+            bool exists = _memoryCache.TryGetValue(endpoint, out int count);
+            _logger.LogInformation($"Cache key '{endpoint}' exists: {exists}, count: {count}");
+            return exists ? count : 0;
         }
     }
 }
