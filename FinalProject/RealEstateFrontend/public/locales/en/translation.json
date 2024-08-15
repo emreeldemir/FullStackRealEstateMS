@@ -41,5 +41,6 @@
     "search-results": "Search Results",
     "select-type": "Select Type",
     "select-status": "Select Status",
-    "select-currency": "Select Currency"
+    "select-currency": "Select Currency",
+    "language": "Language"
 }

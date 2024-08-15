@@ -41,5 +41,6 @@
     "search-results": "Arama Sonuçları",
     "select-type": "Tür Seçin",
     "select-status": "Durum Seçin",
-    "select-currency": "Para Birimi Seçin"
+    "select-currency": "Para Birimi Seçin",
+    "language": "Dil"
 }

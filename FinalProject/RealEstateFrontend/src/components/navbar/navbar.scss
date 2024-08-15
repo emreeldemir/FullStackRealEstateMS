@@ -52,7 +52,6 @@ nav {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    // background-color: #f1e7f5;
     height: 100%;
 
     @include md {
@@ -68,6 +67,7 @@ nav {
       display: flex;
       align-items: center;
       font-weight: bold;
+      position: relative;
 
       img {
         width: 55px;
@@ -90,6 +90,41 @@ nav {
         border: none;
         border-radius: 5px;
         position: relative;
+        font-size: 16px;
+        /* Profil butonunun boyutuyla aynı olacak şekilde */
+      }
+
+      .language-switcher {
+        margin-left: 10px;
+        position: relative;
+        z-index: 2;
+
+        select {
+          padding: 12px 24px;
+          /* Profil butonuyla aynı boyut */
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          background-color: #f2c85ece;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 16px;
+          /* Profil butonunun boyutuyla aynı olacak şekilde */
+          appearance: none;
+          /* Dropdown'un buton gibi görünmesini engeller */
+          outline: none;
+          color: #333;
+        }
+
+        select:focus {
+          outline: none;
+          border-color: #86b9d9;
+          /* Focus durumunda sınır rengi */
+        }
+
+        option {
+          background-color: #fff;
+          color: black;
+        }
       }
     }
 
@@ -130,6 +165,7 @@ nav {
 
       &.active {
         right: 0;
+        z-index: 1;
       }
 
       @include sm {

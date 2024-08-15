@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "../languageSwitcher/LanguageSwitcher";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
@@ -29,6 +30,7 @@ function Navbar() {
             <Link to="/profile" className="profile">
               <span>{t('profile')}</span>
             </Link>
+            <LanguageSwitcher />
           </div>
         ) : (
           <>
