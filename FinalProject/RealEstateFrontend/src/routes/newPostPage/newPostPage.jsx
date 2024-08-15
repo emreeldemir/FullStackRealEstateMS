@@ -68,7 +68,6 @@ function NewPostPage() {
       }
       toast.success("Post created successfully!");
       navigate(`/${res.data.id}`);
-      // navigate("/");
     } catch (err) {
       toast.error("Creating post failed. Please try again!");
       setError(error);
