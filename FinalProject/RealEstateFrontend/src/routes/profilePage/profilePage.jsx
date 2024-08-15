@@ -1,6 +1,5 @@
 import List from "../../components/list/List";
 import "./profilePage.scss";
-import apiRequest from "../../lib/apiRequest";
 import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
 import { Suspense, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";

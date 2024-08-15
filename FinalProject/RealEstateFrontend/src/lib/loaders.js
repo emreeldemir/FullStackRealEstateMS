@@ -16,7 +16,6 @@ export const listPageLoader = async ({ request, params }) => {
 
 export const profilePageLoader = async () => {
   const promise = await apiRequest("/Property/GetAllProperties");
-  //const filteredResults = promise.filter(result => result.userId === 8);
 
   return defer({
     postResponse: promise,
