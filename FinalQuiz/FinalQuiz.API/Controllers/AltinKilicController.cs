@@ -22,6 +22,9 @@ namespace FinalQuiz.API.Controllers
         // Burada "ConcurrentDictionary" kullanmayı düşündüm fakat
         // "ConcurrentDictionary" herhangi bir bellek yönetimi veya süre sonu politikası içermiyor, buna ihtiyacım var mı emin değilim fakat
         // ilk etapta bunu kullanarak yaptım.
+        
+        // Siz soruyu anlatırken aklıma "Op Sys" dersinden "Racing Condition" konusu geldi, Semaphore konusunu da hatırladım,
+        // eş zamanlı erişimleri kontrol etmek için, ama burada "lock" kullandım. Bu sayede "critical section" ları korumuş oldum.
         [HttpGet]
         [Route("RequestCounter")]
         public ActionResult RequestCounter()
