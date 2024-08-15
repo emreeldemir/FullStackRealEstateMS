@@ -34,5 +34,9 @@
     "create-an-account": "Create an Account",
     "do-you-have-an-account": "Do you have an account?",
     "location": "Location",
-    "general": "General"
+    "general": "General",
+    "all": "All",
+    "min-price": "Min Price",
+    "max-price": "Max Price",
+    "search-results": "Search Results"
 }

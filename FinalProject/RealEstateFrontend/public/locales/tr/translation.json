@@ -34,5 +34,9 @@
     "create-an-account": "Hesap Oluştur",
     "do-you-have-an-account": "Hesabınız var mı?",
     "location": "Konum",
-    "general": "Genel"
+    "general": "Genel",
+    "all": "Hepsi",
+    "min-price": "Min Fiyat",
+    "max-price": "Max Fiyat",
+    "search-results": "Arama Sonuçları"
 }

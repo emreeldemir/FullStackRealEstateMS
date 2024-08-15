@@ -3,8 +3,10 @@ import "./filter.scss";
 import { useSearchParams } from "react-router-dom";
 import { useContext } from "react";
 import { DropdownContext } from "../../context/DropdownContext";
+import { useTranslation } from 'react-i18next';
 
 function Filter() {
+  const { t } = useTranslation();
   const { types, statuses, currencies } = useContext(DropdownContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState({
@@ -28,17 +30,17 @@ function Filter() {
 
   return (
     <div className="filter">
-      <h1>Search results</h1>
+      <h1>{t('search-results')}</h1>
       <div className="bottom">
         <div className="item">
-          <label htmlFor="type">Type</label>
+          <label htmlFor="type">{t('type')}</label>
           <select
             name="type"
             id="type"
             onChange={handleChange}
             defaultValue={query.type}
           >
-            <option value="">All</option>
+            <option value="">{t('all')}</option>
             {types.map((type) => (
               <option key={type.id} value={type.name}>
                 {type.name}
@@ -47,14 +49,14 @@ function Filter() {
           </select>
         </div>
         <div className="item">
-          <label htmlFor="status">Status</label>
+          <label htmlFor="status">{t('status')}</label>
           <select
             name="status"
             id="status"
             onChange={handleChange}
             defaultValue={query.status}
           >
-            <option value="">All</option>
+            <option value="">{t('all')}</option>
             {statuses.map((status) => (
               <option key={status.id} value={status.name}>
                 {status.name}
@@ -63,14 +65,14 @@ function Filter() {
           </select>
         </div>
         <div className="item">
-          <label htmlFor="currency">Currency</label>
+          <label htmlFor="currency">{t('currency')}</label>
           <select
             name="currency"
             id="currency"
             onChange={handleChange}
             defaultValue={query.currency}
           >
-            <option value="">All</option>
+            <option value="">{t('all')}</option>
             {currencies.map((currency) => (
               <option key={currency.id} value={currency.name}>
                 {currency.name}
@@ -79,23 +81,23 @@ function Filter() {
           </select>
         </div>
         <div className="item">
-          <label htmlFor="minPrice">Min Price</label>
+          <label htmlFor="minPrice">{t('min-price')}</label>
           <input
             type="number"
             id="minPrice"
             name="minPrice"
-            placeholder="All"
+            placeholder={t('all')}
             onChange={handleChange}
             defaultValue={query.minPrice}
           />
         </div>
         <div className="item">
-          <label htmlFor="maxPrice">Max Price</label>
+          <label htmlFor="maxPrice">{t('max-price')}</label>
           <input
             type="number"
             id="maxPrice"
             name="maxPrice"
-            placeholder="All"
+            placeholder={t('all')}
             onChange={handleChange}
             defaultValue={query.maxPrice}
           />
