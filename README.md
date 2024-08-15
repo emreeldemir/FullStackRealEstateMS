@@ -1,29 +1,19 @@
+<h1 align = "center"> OBSS .NET CodeCamp 2024 Final Project </h1>
 
-<div align="center" style="font-size: 30px;>
+<h2 align = "center"> Real Estate Management System </h2>
 
-<p> OBSS .NET CodeCamp 2024 Final Project </p>
 
+<div align="center">
+  <a href="https://www.linkedin.com/in/emreeldemir/">Emre Eldemir</a>
 </div>
 
-<div align="center" style="font-size: 25px;>
-
-Real Estate Management System
-
-</div>
-
-
-<div align="center" style="font-size: 22px;>
-
-[Emre Eldemir](https://www.linkedin.com/in/emreeldemir/)
-
-</div>
 
 <hr>
 
 ## Project Overview
 
 The **Real Estate App** is a comprehensive platform designed for managing property listings with a focus on usability and efficiency. This application enables users to browse, create, and manage property listings, while providing robust features for both end-users and administrators.
-
+<br>
 
 
 ## Tech
