@@ -13,6 +13,7 @@ import { DropdownContextProvider } from "./context/DropdownContext";
 import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loaders";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PropertyUpdatePage from "./routes/propertyUpdatePage/propertyUpdatePage";
 
 
 function App() {
@@ -58,6 +59,12 @@ function App() {
         {
           path: "/profile/update",
           element: <ProfileUpdatePage />,
+        },
+        {
+          path: "/property/update/:id",
+          element: <DropdownContextProvider>
+            <PropertyUpdatePage />
+          </DropdownContextProvider>,
         },
         {
           path: "/add",
