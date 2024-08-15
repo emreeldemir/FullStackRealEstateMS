@@ -70,11 +70,6 @@ The **Real Estate App** is a comprehensive platform designed for managing proper
 
 <br>
 
-- Client-Server Diagram
-
-![Client-Server Diagram](readme-assets/client-server-diagram.png)
-
-<br>
 
 - EF Core Diagram
 
