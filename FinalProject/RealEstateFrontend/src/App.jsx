@@ -1,3 +1,4 @@
+import React from "react";
 import HomePage from "./routes/homePage/homePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ListPage from "./routes/listPage/listPage";
@@ -12,6 +13,8 @@ import { DropdownContextProvider } from "./context/DropdownContext";
 import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loaders";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from './components/languageSwitcher/LanguageSwitcher';
 
 
 function App() {
@@ -70,11 +73,10 @@ function App() {
 
   return (
     <>
+      <LanguageSwitcher />
       <RouterProvider router={router} />
-      <ToastContainer
-        autoClose={1500}
-        position="top-center"
-      />
+      <ToastContainer autoClose={1500} position="top-center" />
+
     </>
   );
 

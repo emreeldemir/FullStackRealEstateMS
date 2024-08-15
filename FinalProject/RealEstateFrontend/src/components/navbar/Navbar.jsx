@@ -2,10 +2,13 @@ import { useContext, useState } from "react";
 import "./navbar.scss";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const { currentUser } = useContext(AuthContext);
+  const { t } = useTranslation();
 
   return (
     <nav>
@@ -14,9 +17,9 @@ function Navbar() {
           <img src="/logo.png" alt="" />
           <span>Emre Estate</span>
         </a>
-        <a href="/">Home</a>
-        <a href="/">About</a>
-        <a href="/">Contact</a>
+        <a href="/">{t('home')}</a>
+        <a href="/">{t('about')}</a>
+        <a href="/">{t('contact')}</a>
       </div>
       <div className="right">
         {currentUser ? (
@@ -24,14 +27,14 @@ function Navbar() {
             <img src={currentUser.username === "admin" ? "/adminAvatar.png" : "/userAvatar3.jpg"} alt="" />
             <span>{currentUser.username}</span>
             <Link to="/profile" className="profile">
-              <span>Profile</span>
+              <span>{t('profile')}</span>
             </Link>
           </div>
         ) : (
           <>
-            <a href="/login">Sign in</a>
+            <a href="/login">{t('sign in')}</a>
             <a href="/register" className="register">
-              Sign up
+              {t('sign up')}
             </a>
           </>
         )}

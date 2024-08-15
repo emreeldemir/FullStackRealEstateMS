@@ -1,3 +1,8 @@
 {
-    "home": "Anasayfa"
+    "home": "Anasayfa",
+    "about": "Hakkımızda",
+    "contact": "İletisim",
+    "sign in": "Giris Yap",
+    "sign up": "Kayıt Ol",
+    "profile": "Profil"
 }
