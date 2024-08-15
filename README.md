@@ -19,9 +19,10 @@ The **Real Estate App** is a comprehensive platform designed for managing proper
 - **Frontend**:
     - React: Library for building the user interface.
     - Vite: Build tool and development server for fast, modern frontend development.
+    - react-i18next: Library for internationalization and localization.
     - Axios: Promise-based HTTP client for making API requests.
-    - Leaflet: JavaScript library for interactive maps.
     - Axios-Interceptor: Custom Axios interceptor for handling and modifying requests and responses.
+    - Leaflet: JavaScript library for interactive maps.
 
 <br>
 
@@ -61,6 +62,7 @@ The **Real Estate App** is a comprehensive platform designed for managing proper
 
 #### User Interface
 - *Responsive Design*: Ensures compatibility with both mobile and desktop devices.
+- *Internationalization*: Offers support for Turkish and English languages using react-i18next for seamless multilingual experiences.
 <hr>
 
 ## Diagrams
