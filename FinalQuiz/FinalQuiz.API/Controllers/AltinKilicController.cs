@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace FinalQuiz.API.Controllers
 {
@@ -8,24 +9,38 @@ namespace FinalQuiz.API.Controllers
     public class AltinKilicController : ControllerBase
     {
         private readonly ILogger<AltinKilicController> _logger;
+        private readonly IMemoryCache _memoryCache;
+        private readonly object _lock = new object();
 
-        public AltinKilicController(ILogger<AltinKilicController> logger)
+        public AltinKilicController(ILogger<AltinKilicController> logger, IMemoryCache memoryCache)
         {
             _logger = logger;
+            _memoryCache = memoryCache;
         }
 
+
+        //Burada ConcurrentDictionary kullanmayı düşündüm fakat
+        //ConcurrentDictionary herhangi bir bellek yönetimi veya süre sonu politikası içermiyor. 
         [HttpGet]
         [Route("RequestCounter")]
         public ActionResult RequestCounter()
         {
-            // Bana öyle bir Kod yazın ki
-            // Bu endpointin günde kaç kere çağırıldığını saysın.
+            string cacheKey = "RequestCounter";
+            int count;
 
-            // Çağırımı saymak 10 puan
-            // Static keyword'ünü kullanmadan saymak 10 puan
-            // Eşzamanlı çağırımların davranışını ele almak 10 puan
+            // Thread-safe increment
+            lock (_lock)
+            {
+                if (!_memoryCache.TryGetValue(cacheKey, out count))
+                {
+                    count = 0;
+                }
 
-            return Ok();
+                count++;
+                _memoryCache.Set(cacheKey, count);
+            }
+
+            return Ok(new { Message = "This endpoint has been called " + count + " times today." });
         }
 
         [HttpGet]
