@@ -1,16 +1,9 @@
+# OBSS .NET CodeCamp 2024 Final Project
 
+## Real Estate Management System
 
-<div align="center" style="font-size: 36px; font-weight: bold;">
-  OBSS .NET CodeCamp 2024 Final Project
-</div>
+#### [Emre Eldemir](https://www.linkedin.com/in/emreeldemir/)
 
-<div align="center" style="font-size: 30px; font-weight: bold;">
-  Real Estate Management System
-</div>
-
-<div align="center">
-  <a href="https://www.linkedin.com/in/emreeldemir/">Emre Eldemir</a>
-</div>
 
 
 <hr>
