@@ -4,6 +4,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import apiRequest from "../../lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
+import EditIcon from '@mui/icons-material/Edit';
 
 function Card({ item, onDelete }) {
   const { currentUser } = useContext(AuthContext);
@@ -23,6 +24,7 @@ function Card({ item, onDelete }) {
       console.error('There was an error deleting the item!', error);
     }
   };
+
 
   return (
     <div className="card">
@@ -70,7 +72,15 @@ function Card({ item, onDelete }) {
                     style={{ color: '#eb233a', cursor: 'pointer' }}
                   />
                 </div>
+                <div className="icon">
+                  <Link to={`/property/update/${item.id}`}>{ }
+                    <EditIcon
+                      style={{ color: '#149157', cursor: 'pointer' }}
+                    />
+                  </Link>
+                </div>
               </div>
+
             )}
           </div>
         </div>
