@@ -52,17 +52,6 @@ function ProfilePage() {
               {(postResponse) => <List posts={data} />}
             </Await>
           </Suspense>
-          {/* <div className="title">
-            <h1>Saved List</h1>
-          </div> */}
-          {/* <Suspense fallback={<p>Loading...</p>}>
-            <Await
-              resolve={data.postResponse}
-              errorElement={<p>Error loading posts!</p>}
-            >
-              {(postResponse) => <List posts={postResponse.data.savedPosts} />}
-            </Await>
-          </Suspense> */}
         </div>
       </div>
     </div>

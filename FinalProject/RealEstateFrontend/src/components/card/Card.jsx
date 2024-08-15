@@ -4,8 +4,6 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import apiRequest from "../../lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 function Card({ item, onDelete }) {
   const { currentUser } = useContext(AuthContext);

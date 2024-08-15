@@ -3,7 +3,6 @@ import "./pin.scss";
 import { Link } from "react-router-dom";
 
 function Pin({ item }) {
-  // Fiyatı formatlama fonksiyonu
   const formatPrice = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
