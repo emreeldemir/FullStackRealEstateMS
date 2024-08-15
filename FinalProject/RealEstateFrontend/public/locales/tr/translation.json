@@ -45,5 +45,6 @@
     "language": "Dil",
     "logged-in": "Başarıyla giriş yapıldı!",
     "logged-out": "Başarıyla çıkış yapıldı!",
-    "dont-have-an-account": "Hesabınız yok mu? Kayıt Olun"
+    "dont-have-an-account": "Hesabınız yok mu? Kayıt Olun",
+    "update-post": "İlanı Güncelle"
 }

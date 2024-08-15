@@ -97,7 +97,7 @@ function PropertyUpdatePage() {
     return (
         <div className="newPostPage">
             <div className="formContainer">
-                <h1>{t('add-new-post')}</h1>
+                <h1>{t('update-post')}</h1>
                 <div className="wrapper">
                     <form onSubmit={handleSubmit}>
                         <div className="item title">

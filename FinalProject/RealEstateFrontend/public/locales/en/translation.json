@@ -45,5 +45,6 @@
     "language": "Language",
     "logged-in": "Logged in successfully!",
     "logged-out": "Logged out successfully!",
-    "dont-have-an-account": "Don't you have an account? Register"
+    "dont-have-an-account": "Don't you have an account? Register",
+    "update-post": "Update Post"
 }
