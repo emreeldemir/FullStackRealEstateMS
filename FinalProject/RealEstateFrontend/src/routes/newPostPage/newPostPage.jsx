@@ -67,8 +67,8 @@ function NewPostPage() {
       } catch (err) {
       }
       toast.success("Post created successfully!");
-      navigate("/");
-      //navigate("/" + res.data.id)  TODO EMRE TODO
+      navigate(`/${res.data.id}`);
+      // navigate("/");
     } catch (err) {
       toast.error("Creating post failed. Please try again!");
       setError(error);
