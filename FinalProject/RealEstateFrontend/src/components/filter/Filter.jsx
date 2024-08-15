@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import "./filter.scss";
 import { useSearchParams } from "react-router-dom";
-import apiRequest from "../../lib/apiRequest";
 import { useContext } from "react";
 import { DropdownContext } from "../../context/DropdownContext";
 
