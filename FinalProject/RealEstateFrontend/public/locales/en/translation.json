@@ -38,5 +38,8 @@
     "all": "All",
     "min-price": "Min Price",
     "max-price": "Max Price",
-    "search-results": "Search Results"
+    "search-results": "Search Results",
+    "select-type": "Select Type",
+    "select-status": "Select Status",
+    "select-currency": "Select Currency"
 }

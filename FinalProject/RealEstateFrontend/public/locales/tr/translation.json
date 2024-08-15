@@ -38,5 +38,8 @@
     "all": "Hepsi",
     "min-price": "Min Fiyat",
     "max-price": "Max Fiyat",
-    "search-results": "Arama Sonuçları"
+    "search-results": "Arama Sonuçları",
+    "select-type": "Tür Seçin",
+    "select-status": "Durum Seçin",
+    "select-currency": "Para Birimi Seçin"
 }
