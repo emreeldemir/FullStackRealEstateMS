@@ -224,58 +224,67 @@ namespace RealEstate.API.Controllers
                 return BadRequest("Invalid property data.");
             }
 
-            var property = await _context.Properties
-                                         .Where(p => p.Id == id && !p.IsDeleted)
-                                         .FirstOrDefaultAsync();
-
-            if (property == null)
+            try
             {
-                return NotFound();
-            }
+                var property = await _context.Properties
+                                             .Where(p => p.Id == id && !p.IsDeleted)
+                                             .FirstOrDefaultAsync();
 
-            property.Title = request.Title ?? property.Title;
-            property.Description = request.Description ?? property.Description;
-            property.TypeId = request.TypeId != 0 ? request.TypeId : property.TypeId;
-            property.StatusId = request.StatusId != 0 ? request.StatusId : property.StatusId;
-            property.StartDate = request.StartDate != default ? request.StartDate : property.StartDate;
-            property.EndDate = request.EndDate != default ? request.EndDate : property.EndDate;
-            property.Price = request.Price != 0 ? request.Price : property.Price;
-            property.CurrencyId = request.CurrencyId != 0 ? request.CurrencyId : property.CurrencyId;
-            property.UserId = request.UserId != 0 ? request.UserId : property.UserId;
-            property.Longitude = request.Longitude != 0 ? request.Longitude : property.Longitude;
-            property.Latitude = request.Latitude != 0 ? request.Latitude : property.Latitude;
-
-            _context.Properties.Update(property);
-            await _context.SaveChangesAsync();
-
-            var response = new PropertyResponseDTO
-            {
-                Id = property.Id,
-                Title = property.Title,
-                Description = property.Description,
-                TypeId = property.TypeId,
-                TypeName = property.Type?.Name,
-                StatusId = property.StatusId,
-                StatusName = property.Status?.Name,
-                StartDate = property.StartDate,
-                EndDate = property.EndDate,
-                Price = property.Price,
-                CurrencyId = property.CurrencyId,
-                CurrencyName = property.Currency?.Name,
-                UserId = property.UserId,
-                UserName = property.User?.UserName,
-                Longitude = property.Longitude,
-                Latitude = property.Latitude,
-                Photos = property.Photos.Select(photo => new PhotoResponseDTO
+                if (property == null)
                 {
-                    Id = photo.Id,
-                    PhotoData = photo.PhotoData
-                }).ToList()
-            };
+                    return NotFound();
+                }
 
+                property.Title = request.Title ?? property.Title;
+                property.Description = request.Description ?? property.Description;
+                property.TypeId = request.TypeId != 0 ? request.TypeId : property.TypeId;
+                property.StatusId = request.StatusId != 0 ? request.StatusId : property.StatusId;
+                property.StartDate = request.StartDate != default ? request.StartDate : property.StartDate;
+                property.EndDate = request.EndDate != default ? request.EndDate : property.EndDate;
+                property.Price = request.Price != 0 ? request.Price : property.Price;
+                property.CurrencyId = request.CurrencyId != 0 ? request.CurrencyId : property.CurrencyId;
+                property.UserId = request.UserId != 0 ? request.UserId : property.UserId;
+                property.Longitude = request.Longitude != 0 ? request.Longitude : property.Longitude;
+                property.Latitude = request.Latitude != 0 ? request.Latitude : property.Latitude;
 
-            return Ok(response);
+                _context.Properties.Update(property);
+                await _context.SaveChangesAsync();
+
+                var response = new PropertyResponseDTO
+                {
+                    Id = property.Id,
+                    Title = property.Title,
+                    Description = property.Description,
+                    TypeId = property.TypeId,
+                    TypeName = property.Type?.Name,
+                    StatusId = property.StatusId,
+                    StatusName = property.Status?.Name,
+                    StartDate = property.StartDate,
+                    EndDate = property.EndDate,
+                    Price = property.Price,
+                    CurrencyId = property.CurrencyId,
+                    CurrencyName = property.Currency?.Name,
+                    UserId = property.UserId,
+                    UserName = property.User?.UserName,
+                    Longitude = property.Longitude,
+                    Latitude = property.Latitude,
+                    Photos = property.Photos?.Select(photo => new PhotoResponseDTO
+                    {
+                        Id = photo.Id,
+                        PhotoData = photo.PhotoData
+                    }).ToList() ?? new List<PhotoResponseDTO>()
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception details for debugging
+                // Example: Log.Error(ex, "An error occurred while updating the property.");
+                return StatusCode(500, "Internal server error. Please try again later.");
+            }
         }
+
 
         [Authorize(Roles = "admin, user")]
         [HttpDelete("Delete/{id}")]
