@@ -27,5 +27,7 @@
     "type": "Tür",
     "status": "Durum",
     "latitude": "Enlem",
-    "longitude": "Boylam"
+    "longitude": "Boylam",
+    "password": "Şifre",
+    "update": "Güncelle"
 }

@@ -27,5 +27,7 @@
     "type": "Type",
     "status": "Status",
     "latitude": "Latitude",
-    "longitude": "Longitude"
+    "longitude": "Longitude",
+    "password": "Password",
+    "update": "Update"
 }

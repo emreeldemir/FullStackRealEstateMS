@@ -3,8 +3,10 @@ import "./profileUpdatePage.scss";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 function ProfileUpdatePage() {
+  const { t } = useTranslation();
   const { currentUser, updateUser } = useContext(AuthContext);
   const [error, setError] = useState("");
 
@@ -40,9 +42,9 @@ function ProfileUpdatePage() {
     <div className="profileUpdatePage">
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
-          <h1>Update Profile</h1>
+          <h1>{t('update-profile')}</h1>
           <div className="item">
-            <label htmlFor="userName">Username</label>
+            <label htmlFor="userName">{t('username')}</label>
             <input
               id="userName"
               name="userName"
@@ -51,7 +53,7 @@ function ProfileUpdatePage() {
             />
           </div>
           <div className="item">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">{t('email')}</label>
             <input
               id="email"
               name="email"
@@ -60,11 +62,11 @@ function ProfileUpdatePage() {
             />
           </div>
           <div className="item">
-            <label htmlFor="newPassword">Password</label>
+            <label htmlFor="newPassword">{t('password')}</label>
             <input id="newPassword" name="newPassword" type="password" />
           </div>
 
-          <button>Update</button>
+          <button>{t('update')}</button>
           {error && <span>error</span>}
         </form>
       </div>
