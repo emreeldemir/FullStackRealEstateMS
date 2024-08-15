@@ -16,5 +16,7 @@
     "email": "E-posta",
     "logout": "Çıkış Yap",
     "my-list": "Listem",
-    "create-new-post": "Yeni İlan Oluştur"
+    "create-new-post": "Yeni İlan Oluştur",
+    "login": "Giris Yap",
+    "welcome-back": "Tekrar Hoşgeldiniz"
 }

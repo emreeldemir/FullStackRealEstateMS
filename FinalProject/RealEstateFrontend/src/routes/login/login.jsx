@@ -5,9 +5,11 @@ import apiRequest from "../../lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from 'react-i18next';
 
 
 function Login() {
+  const { t } = useTranslation();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -48,7 +50,7 @@ function Login() {
     <div className="login">
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
-          <h1>Welcome back</h1>
+          <h1>{t('welcome-back')}</h1>
           <input
             name="username"
             required
@@ -63,7 +65,7 @@ function Login() {
             required
             placeholder="Password"
           />
-          <button disabled={isLoading}>Login</button>
+          <button disabled={isLoading}>{t('login')}</button>
           {error && <span>{error}</span>}
           <Link to="/register">{"Don't"} you have an account?</Link>
         </form>

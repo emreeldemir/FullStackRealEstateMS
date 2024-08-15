@@ -16,5 +16,7 @@
     "email": "E-mail",
     "logout": "Logout",
     "my-list": "My List",
-    "create-new-post": "Create New Post"
+    "create-new-post": "Create New Post",
+    "login": "Login",
+    "welcome-back": "Welcome back"
 }
