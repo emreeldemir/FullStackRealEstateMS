@@ -18,7 +18,7 @@
     "my-list": "Listem",
     "create-new-post": "Yeni İlan Oluştur",
     "login": "Giris Yap",
-    "welcome-back": "Tekrar Hoşgeldiniz",
+    "welcome-back": "Tekrar Hosgeldiniz",
     "add-new-post": "Yeni İlan Ekle",
     "title": "Başlık",
     "description": "Açıklama",
@@ -32,7 +32,7 @@
     "update": "Güncelle",
     "register": "Kayıt Ol",
     "create-an-account": "Hesap Oluştur",
-    "do-you-have-an-account": "Hesabınız var mı?",
+    "do-you-have-an-account": "Hesabınız var mı? Giris Yapın",
     "location": "Konum",
     "general": "Genel",
     "all": "Hepsi",
@@ -44,5 +44,6 @@
     "select-currency": "Para Birimi Seçin",
     "language": "Dil",
     "logged-in": "Başarıyla giriş yapıldı!",
-    "logged-out": "Başarıyla çıkış yapıldı!"
+    "logged-out": "Başarıyla çıkış yapıldı!",
+    "dont-have-an-account": "Hesabınız yok mu? Kayıt Olun"
 }

@@ -32,7 +32,7 @@
     "update": "Update",
     "register": "Register",
     "create-an-account": "Create an Account",
-    "do-you-have-an-account": "Do you have an account?",
+    "do-you-have-an-account": "Do you have an account? Log in",
     "location": "Location",
     "general": "General",
     "all": "All",
@@ -44,5 +44,6 @@
     "select-currency": "Select Currency",
     "language": "Language",
     "logged-in": "Logged in successfully!",
-    "logged-out": "Logged out successfully!"
+    "logged-out": "Logged out successfully!",
+    "dont-have-an-account": "Don't you have an account? Register"
 }

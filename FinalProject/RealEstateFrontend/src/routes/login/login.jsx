@@ -67,7 +67,7 @@ function Login() {
           />
           <button disabled={isLoading}>{t('login')}</button>
           {error && <span>{error}</span>}
-          <Link to="/register">{"Don't"} you have an account?</Link>
+          <Link to="/register">{t('dont-have-an-account')}</Link>
         </form>
       </div>
       <div className="imgContainer">
