@@ -65,7 +65,6 @@ function NewPostPage() {
         );
         await Promise.all(uploadPromises);
       } catch (err) {
-        console.log(err);
       }
       toast.success("Post created successfully!");
       navigate("/");
