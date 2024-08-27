@@ -1,9 +1,11 @@
-# OBSS .NET CodeCamp 2024 Final Project
+<h1 align="center">Real Estate Management System</h1>
 
-## Real Estate Management System
 
-#### [Emre Eldemir](https://www.linkedin.com/in/emreeldemir/)
+<h4 align="center"><a href="https://www.linkedin.com/in/emreeldemir/">Emre Eldemir</a></h4> 
 
+<br>
+
+* *Special thanks to [Lama Dev](https://github.com/safak) for the React template. You can find the original repository [here](https://github.com/safak/react-estate-ui/tree/completed).*
 
 
 <hr>
@@ -68,21 +70,27 @@ The **Real Estate App** is a comprehensive platform designed for managing proper
 ## Diagrams
 - JWT Token Based Auth Diagram
 
-![JWT Diagram](readme-assets/jwt-diagram.jpg)
+<img src="readme-assets/jwt-diagram.jpg" alt="JWT Diagram" width="700"/>
 
 
+<br>
+<br>
 <br>
 
 
 - EF Core Diagram
 
-![EF Core Diagram](readme-assets/ef-core-diagram.jpg)
+<img src="readme-assets/ef-core-diagram.jpg" alt="EF Core Diagram" width="700"/>
 
+
+<br>
+<br>
 <br>
 
 - Database (MSSQL Server) Diagram
 
-![DB Diagram](readme-assets/db-diagram.jpg)
+<img src="readme-assets/db-diagram.jpg" alt="DB Diagram" width="700"/>
+
 
 
 <hr>
@@ -105,14 +113,11 @@ npm run dev
 <br>
 
 > For Backend, add migration on NuGet Package Manager Console.
-Then start the server by click "Run" on VisualStudio:
-
 ```sh
 add-migration initialCreate
 update-database
 ```
+> Then start the server by click "Run" on VisualStudio:
+
+* *Also, I have dockerized the frontend and backend projects separately but I have not created compose yet.*
 <hr>
-
-## License
-
-OBSS Tech
